@@ -3,123 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আল-হাদিস লাইব্রেরি - সুন্নাহ ও মাসআলা পোর্টাল</title>
+    <title>আল-হাদিস ও মাসআলা লাইব্রেরি</title>
     <style>
         :root {
-            --bg-color: #09090b;
-            --card-bg: #141416;
+            --bg-color: #0b0c10;
+            --card-bg: #12141a;
             --gold-primary: #d4af37;
             --gold-light: #f3e5ab;
             --text-main: #f4f4f5;
-            --text-muted: #a1a1aa;
-            --border-color: #2a261d;
+            --text-muted: #9ba3af;
+            --border-color: #1f242d;
         }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding-bottom: 100px; }
-        header { text-align: center; padding: 15px; border-bottom: 1px solid var(--border-color); background: #111; position: sticky; top: 0; z-index: 100; }
-        h1 { color: var(--gold-primary); margin: 0 0 10px 0; font-size: 20px; cursor: pointer; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding-bottom: 90px; }
+        header { text-align: center; padding: 15px; border-bottom: 1px solid var(--border-color); background: #07080a; position: sticky; top: 0; z-index: 100; }
+        h1 { color: var(--gold-primary); margin: 0 0 10px 0; font-size: 19px; }
         .search-container { max-width: 600px; margin: 0 auto; }
-        .search-box { width: 100%; padding: 10px 15px; border-radius: 25px; border: 1px solid var(--gold-primary); background: var(--card-bg); color: var(--text-main); font-size: 14px; outline: none; box-sizing: border-box; }
+        .search-box { width: 100%; padding: 10px 15px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); font-size: 13px; outline: none; box-sizing: border-box; }
+        .search-box:focus { border-color: var(--gold-primary); }
         .container { max-width: 800px; margin: 15px auto; padding: 0 12px; }
-        .section-title { color: var(--gold-light); font-size: 16px; margin-bottom: 12px; border-left: 3px solid var(--gold-primary); padding-left: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .back-btn { background: var(--gold-primary); color: #000; border: none; padding: 4px 10px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 11px; display: none; }
-        .card { background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 10px; cursor: pointer; }
-        .card:active { border-color: var(--gold-primary); background: #1a1a1e; }
+        .section-title { color: var(--gold-light); font-size: 15px; margin-bottom: 12px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* গ্রিড ড্যাশবোর্ড (আইকন শর্টকাট) */
+        .grid-menu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 15px; }
+        .grid-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px 5px; text-align: center; cursor: pointer; }
+        .grid-item:active { border-color: var(--gold-primary); }
+        .grid-item div { font-size: 20px; margin-bottom: 4px; }
+        .grid-item span { font-size: 11px; color: var(--text-muted); display: block; }
+
+        .card { background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 10px; }
+        .card-clickable { cursor: pointer; }
+        .card-clickable:active { border-color: var(--gold-primary); }
         .card h3 { margin: 0 0 5px 0; color: var(--gold-light); font-size: 15px; }
         .card p { margin: 0; color: var(--text-muted); font-size: 12px; }
-        .badge { background: rgba(212, 175, 55, 0.15); color: var(--gold-primary); padding: 4px 8px; border-radius: 15px; font-size: 11px; float: right; border: 1px solid rgba(212, 175, 55, 0.3); }
-        .badge-sahih { background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 3px 7px; border-radius: 6px; font-size: 11px; border: 1px solid #10b981; display: inline-block; margin-bottom: 6px; }
-        .hadith-text { font-size: 14px; line-height: 1.5; color: var(--text-main); margin: 8px 0; }
-        .hadith-meta { font-size: 11px; color: var(--text-muted); border-top: 1px dashed var(--border-color); padding-top: 6px; margin-top: 6px; }
-        .masala-box { background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--gold-primary); padding: 8px; border-radius: 6px; margin-top: 8px; font-size: 12px; color: var(--gold-light); }
+        .badge { background: rgba(212, 175, 55, 0.15); color: var(--gold-primary); padding: 3px 8px; border-radius: 12px; font-size: 11px; float: right; border: 1px solid rgba(212, 175, 55, 0.3); }
+
+        /* হাদিস ও টিকা ডিজাইন */
+        .hadith-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .badge-sahih { background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 3px 7px; border-radius: 6px; font-size: 11px; border: 1px solid #10b981; }
+        .tika-btn { background: rgba(212, 175, 55, 0.1); color: var(--gold-primary); border: 1px solid var(--gold-primary); padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold; }
+        .hadith-text { font-size: 14px; line-height: 1.6; margin: 10px 0; }
+        
+        /* টিকা ও মতভেদ সেকশন */
+        .tika-box { display: none; background: rgba(212, 175, 55, 0.04); border-top: 1px dashed var(--border-color); padding-top: 10px; margin-top: 10px; font-size: 12px; }
+        .tika-box.show { display: block; }
+        .tika-item { margin-bottom: 6px; color: var(--gold-light); }
+        .tika-item b { color: var(--gold-primary); }
+
+        /* কিবলা কম্পাস (আইহাদিস স্টাইল) */
+        .compass-card { text-align: center; padding: 20px; }
+        .compass-circle { width: 180px; height: 180px; border: 2px dashed var(--gold-primary); border-radius: 50%; margin: 15px auto; position: relative; display: flex; align-items: center; justify-content: center; background: #07080a; }
+        .needle { width: 4px; height: 120px; background: linear-gradient(to top, transparent 50%, var(--gold-primary) 50%); position: absolute; transition: transform 0.3s; transform-origin: center center; }
+        .qibla-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .info-box { background: #07080a; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .info-box div { font-size: 16px; color: var(--gold-primary); font-weight: bold; }
+
+        /* প্রফাইল / অ্যাক্টিভিটি ডিজাইন */
+        .profile-header { display: flex; align-items: center; gap: 15px; padding: 15px; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px; }
+        .profile-icon { width: 50px; height: 50px; background: var(--gold-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #000; }
+        .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+        .stat-card { background: #07080a; padding: 10px 5px; border-radius: 8px; text-align: center; border: 1px solid var(--border-color); }
+        .stat-card div { font-size: 14px; color: var(--gold-primary); font-weight: bold; }
+        .stat-card span { font-size: 10px; color: var(--text-muted); }
+
         .page-view { display: none; }
         .page-view.active { display: block; }
-        
-        /* ভাসমান সুন্দর বটম নেভিগেশন বার */
-        .bottom-nav { position: fixed; bottom: 10px; left: 10px; right: 10px; background: #141416; border: 1px solid var(--gold-primary); border-radius: 20px; display: flex; justify-content: space-around; padding: 8px 0; z-index: 1000; box-shadow: 0 5px 20px rgba(0,0,0,0.9); }
-        .nav-item { text-align: center; color: var(--text-muted); text-decoration: none; font-size: 11px; cursor: pointer; flex: 1; -webkit-tap-highlight-color: transparent; }
+
+        /* বটম বার */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #07080a; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; }
+        .nav-item { text-align: center; color: var(--text-muted); text-decoration: none; font-size: 11px; cursor: pointer; flex: 1; }
         .nav-item.active { color: var(--gold-primary); font-weight: bold; }
-        .nav-item div { font-size: 18px; margin-bottom: 1px; }
+        .nav-item div { font-size: 18px; margin-bottom: 2px; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1 onclick="showHome()">আল-হাদিস লাইব্রেরি</h1>
+        <h1 onclick="showHome()">আল-হাদিস ও মাসআলা লাইব্রেরি</h1>
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-box" placeholder="কিতাব বা হাদিস নম্বর লিখে খুঁজুন...">
+            <input type="text" class="search-box" placeholder="কিতাব, বিষয় বা হাদিস খুঁজুন...">
         </div>
     </header>
 
     <div class="container">
         
-        <!-- ১. হোম পেজ (কিতাব তালিকা) -->
+        <!-- ১. হোম পেজ (কিতাব ও শর্টকাট ড্যাশবোর্ড) -->
         <div id="homeView" class="page-view active">
+            
+            <!-- শর্টকাট গ্রিড -->
+            <div class="grid-menu">
+                <div class="grid-item" onclick="switchTab('topicView', document.querySelectorAll('.nav-item')[1])"><div>📚</div><span>বিষয়ভিত্তিক</span></div>
+                <div class="grid-item" onclick="switchTab('qiblaView')"><div>🧭</div><span>কিবলা</span></div>
+                <div class="grid-item" onclick="switchTab('namazView')"><div>⏰</div><span>ওয়াক্ত</span></div>
+                <div class="grid-item" onclick="switchTab('profileView', document.querySelectorAll('.nav-item')[3])"><div>👤</div><span>প্রোফাইল</span></div>
+            </div>
+
             <div class="section-title">প্রধান কিতাবসমূহ</div>
-            <div class="card" onclick="openBook('bukhari', 'সহীহ বুখারী')">
+            <div class="card card-clickable" onclick="openBook('সহীহ বুখারী')">
                 <span class="badge">৭৫৬৩ হাদিস</span>
                 <h3>সহীহ বুখারী</h3>
                 <p>ইমাম বুখারী (রহ.)</p>
             </div>
-            <div class="card" onclick="openBook('muslim', 'সহীহ মুসলিম')">
+            <div class="card card-clickable" onclick="openBook('সহীহ মুসলিম')">
                 <span class="badge">৭৫৪৭ হাদিস</span>
                 <h3>সহীহ মুসলিম</h3>
                 <p>ইমাম মুসলিম (রহ.)</p>
             </div>
-            <div class="card" onclick="openBook('nasai', 'সুনানে আন-নাসায়ী')">
+            <div class="card card-clickable" onclick="openBook('সুনানে আন-নাসায়ী')">
                 <span class="badge">৫৭৫৮ হাদিস</span>
                 <h3>সুনানে আন-নাসায়ী</h3>
                 <p>ইমাম নাসায়ী (রহ.)</p>
             </div>
-            <div class="card" onclick="openBook('abudawud', 'সুনানে আবু দাউদ')">
+            <div class="card card-clickable" onclick="openBook('সুনানে আবু দাউদ')">
                 <span class="badge">৫২৭৪ হাদিস</span>
                 <h3>সুনানে আবু দাউদ</h3>
                 <p>ইমাম আবু দাউদ (রহ.)</p>
             </div>
         </div>
 
-        <!-- ২. অধ্যায় ও হাদিস দেখার পেজ -->
+        <!-- ২. বিষয়ভিত্তিক হাদিস পেজ -->
+        <div id="topicView" class="page-view">
+            <div class="section-title">বিষয়ভিত্তিক হাদিস</div>
+            <div class="card card-clickable" onclick="openBook('আকিদা সম্পর্কিত হাদিস')">
+                <span class="badge">৪৮৫টি হাদিস</span>
+                <h3>আকিদা</h3>
+                <p>ইমান ও তাওহীদ বিষয়ক</p>
+            </div>
+            <div class="card card-clickable" onclick="openBook('আমল ও নেকী সম্পর্কিত হাদিস')">
+                <span class="badge">২৫০টি হাদিস</span>
+                <h3>আমল ও নেকী</h3>
+                <p>দৈনন্দিন জিকির ও ফজিলত</p>
+            </div>
+            <div class="card card-clickable" onclick="openBook('ইসলামিক অর্থনীতি')">
+                <span class="badge">১৪১টি হাদিস</span>
+                <h3>ইসলামিক অর্থনীতি</h3>
+                <p>ব্যবসা-বাণিজ্য ও যাকাত</p>
+            </div>
+        </div>
+
+        <!-- ৩. হাদিস ও টিকা দেখার পেজ -->
         <div id="hadithView" class="page-view">
             <div class="section-title">
                 <span id="bookTitle">কিতাবের নাম</span>
-                <button class="back-btn" id="backBtn" onclick="showHome()" style="display:inline-block;">← পেছনে যান</button>
+                <button style="background:var(--gold-primary); border:none; border-radius:10px; padding:3px 8px; font-weight:bold; cursor:pointer;" onclick="showHome()">← ব্যাক</button>
             </div>
             <div id="hadithList"></div>
         </div>
 
-        <!-- ৩. কুরআন পেজ -->
-        <div id="quranView" class="page-view">
-            <div class="section-title">আল-কুরআন (বাংলা অনুবাদ)</div>
-            <div class="card">
-                <h3>১. সূরা আল-ফাতিহা</h3>
-                <p>আয়াত: ৭ | মাক্কী</p>
-            </div>
-            <div class="card">
-                <h3>২. সূরা আল-বাকারা</h3>
-                <p>আয়াত: ২৮৬ | মাদানী</p>
-            </div>
-        </div>
-
-        <!-- ৪. ক্বিবলা কম্পাস পেজ -->
+        <!-- ৪. কিবলা কম্পাস (আইহাদিস স্টাইল) -->
         <div id="qiblaView" class="page-view">
-            <div class="section-title">ক্বিবলা কম্পাস</div>
-            <div class="card" style="text-align: center; padding: 30px 15px;">
-                <div style="font-size: 50px;">🧭</div>
-                <h3 style="margin-top: 10px;">ক্বিবলার দিক: ২৯৩° (উত্তর-পশ্চিম)</h3>
-                <p>আপনার লোকেশন অনুযায়ী ক্বিবলা কাবা শরিফের দিকে নির্দেশ করছে।</p>
+            <div class="section-title">কিবলা কম্পাস</div>
+            <div class="card compass-card">
+                <h3 id="qiblaInstruction" style="color:var(--gold-primary); margin-bottom:10px;">আরও ৭৭° বামে ঘুরুন</h3>
+                <div class="compass-circle">
+                    <div id="compassNeedle" class="needle"></div>
+                    <div style="color:var(--gold-light); font-size:12px;">🕋 কাবা</div>
+                </div>
+                <p style="font-size:11px; color:var(--text-muted);">ফোনটি সমতল স্থানে রাখুন।</p>
+                <div class="qibla-info-grid">
+                    <div class="info-box">
+                        <span>কিবলার দিক</span>
+                        <div id="qiblaDeg">২৭৮° প</div>
+                    </div>
+                    <div class="info-box">
+                        <span>কাবার দূরত্ব</span>
+                        <div id="qiblaDist">৫১৭৩ কিমি</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- ৫. সেভড পেজ -->
+        <!-- ৫. কালেকশন / বুকমার্ক পেজ -->
         <div id="savedView" class="page-view">
-            <div class="section-title">সেভ করা হাদিস ও ফাইল</div>
+            <div class="section-title">বুকমার্ক ও কালেকশন</div>
+            <div id="savedList"></div>
+        </div>
+
+        <!-- ৬. প্রোফাইল ও অ্যাক্টিভিটি পেজ -->
+        <div id="profileView" class="page-view">
+            <div class="profile-header">
+                <div class="profile-icon">👤</div>
+                <div>
+                    <h3 style="margin:0; color:var(--gold-light);">গেস্ট ব্যবহারকারী</h3>
+                    <p style="margin:2px 0 0 0; font-size:11px; color:var(--text-muted);">বুকমার্ক ও নোট সেভ রাখতে লগইন করুন</p>
+                </div>
+            </div>
+            
+            <div class="section-title">সর্বমোট কার্যক্রম</div>
             <div class="card">
-                <p style="text-align: center; color: var(--text-muted);">এখনো কোনো হাদিস সেভ করা হয়নি।</p>
+                <div class="stat-grid">
+                    <div class="stat-card"><div id="readCount">১৩২</div><span>পড়া</span></div>
+                    <div class="stat-card"><div id="bookmarkCount">৩০</div><span>বুকমার্ক</span></div>
+                    <div class="stat-card"><div>০</div><span>পিন</span></div>
+                    <div class="stat-card"><div>০</div><span>নোট</span></div>
+                </div>
+            </div>
+
+            <div class="section-title">লাইফটাইম অ্যাক্টিভিটি</div>
+            <div class="card">
+                <div class="stat-grid">
+                    <div class="stat-card"><div>১ ঘ ৪০ মি</div><span>সময়</span></div>
+                    <div class="stat-card"><div>১২</div><span>সক্রিয় দিন</span></div>
+                    <div class="stat-card"><div>০</div><span>স্ট্রিক</span></div>
+                    <div class="stat-card"><div>৫</div><span>সেরা স্ট্রিক</span></div>
+                </div>
             </div>
         </div>
 
-        <!-- ৬. লাইভ নামাজের সময় পেজ -->
+        <!-- ৭. নামাজের সময় পেজ -->
         <div id="namazView" class="page-view">
-            <div class="section-title">লাইভ নামাজের সময়সূচী</div>
+            <div class="section-title">লাইভ নামাজের সময়সূচী</div>
             <div class="card"><h3>ফজর: ৪:৪৫ AM</h3></div>
             <div class="card"><h3>যোহর: ১২:০৫ PM</h3></div>
             <div class="card"><h3>আসর: ৪:১৫ PM</h3></div>
@@ -129,13 +221,12 @@
 
     </div>
 
-    <!-- ভাসমান বটম নেভিগেশন বার -->
+    <!-- বটম নেভিগেশন বার -->
     <nav class="bottom-nav">
-        <div class="nav-item active" onclick="switchTab('homeView', this)"><div>📖</div>হাদিস</div>
-        <div class="nav-item" onclick="switchTab('quranView', this)"><div>🕋</div>কুরআন</div>
-        <div class="nav-item" onclick="switchTab('qiblaView', this)"><div>🧭</div>ক্বিবলা</div>
-        <div class="nav-item" onclick="switchTab('savedView', this)"><div>⭐</div>সেভড</div>
-        <div class="nav-item" onclick="switchTab('namazView', this)"><div>⏰</div>নামাজ</div>
+        <div class="nav-item active" onclick="switchTab('homeView', this)"><div>🏠</div>হোম</div>
+        <div class="nav-item" onclick="switchTab('topicView', this)"><div>📖</div>বিষয়ভিত্তিক</div>
+        <div class="nav-item" onclick="switchTab('savedView', this); loadSaved()"><div>🔖</div>কালেকশন</div>
+        <div class="nav-item" onclick="switchTab('profileView', this)"><div>👤</div>প্রোফাইল</div>
     </nav>
 
     <script>
@@ -146,13 +237,15 @@
             document.getElementById(viewId).classList.add('active');
             if(element) element.classList.add('active');
             window.scrollTo(0, 0);
+
+            if(viewId === 'qiblaView') initQibla();
         }
 
         function showHome() {
             switchTab('homeView', document.querySelectorAll('.nav-item')[0]);
         }
 
-        function openBook(bookKey, bookName) {
+        function openBook(bookName) {
             document.getElementById('bookTitle').innerText = bookName;
             const hadithList = document.getElementById('hadithList');
             hadithList.innerHTML = '<p style="text-align:center; padding:20px;">হাদিস লোড হচ্ছে...</p>';
@@ -162,29 +255,70 @@
             setTimeout(() => {
                 hadithList.innerHTML = `
                     <div class="card">
-                        <span class="badge-sahih">মান: সহীহ</span>
+                        <div class="hadith-header">
+                            <span class="badge-sahih">মান: সহীহ</span>
+                            <button class="tika-btn" onclick="toggleTika('tika-1')">🔍 বিস্তারিত / টিকা</button>
+                        </div>
                         <h3>অধ্যায় ১: ওহীর সূচনা (হাদিস ১)</h3>
                         <div class="hadith-text">রাসূলুল্লাহ (সাল্লাল্লাহু আলাইহি ওয়া সাল্লাম) বলেছেন: "সকল কাজ নিয়তের ওপর নির্ভরশীল, আর প্রত্যেক মানুষ তার নিয়ত অনুযায়ী ফল পাবে।"</div>
-                        <div class="hadith-meta">
-                            <b>রাবী:</b> আমীরুল মু'মিনীন ওমর ইবনুল খাত্তাব (রাঃ)<br>
-                            <b>সূত্র:</b> ${bookName}, কিতাবুল ওহী
+                        
+                        <div id="tika-1" class="tika-box">
+                            <div class="tika-item"><b>১. সূত্র:</b> ${bookName}, কিতাবুল ওহী, হাদিস ১</div>
+                            <div class="tika-item"><b>২. ওলামায়ে কেরামের মতভেদ ও আলোচনা:</b> সকল মুহাদ্দিস একমত যে এই হাদিসটি ইসলামের অন্যতম মূলভিত্তি। নিয়ত ছাড়া কোনো ইবাদত কবুল হবে না।</div>
+                            <div class="tika-item"><b>৩. সম্পর্কিত হাদিস:</b> সহীহ মুসলিম ১৯০৭, সুনানে নাসায়ী ৭৫।</div>
                         </div>
-                        <div class="masala-box">
-                            <b>মাসআলা / ওলামায়ে কেরামের মন্তব্য:</b> যেকোনো ইবাদত কবুল হওয়ার জন্য নিখাদ নিয়ত আবশ্যক।
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="badge-sahih">মান: সহীহ</span>
-                        <h3>অধ্যায় ১: ওহীর সূচনা (হাদিস ২)</h3>
-                        <div class="hadith-text">আয়েশা (রাঃ) থেকে বর্ণিত, হারিস ইবনে হিশাম (রাঃ) রাসূলুল্লাহ (সাঃ)-কে জিজ্ঞাসা করলেন, ওহী কীভাবে আসে?...</div>
-                        <div class="hadith-meta">
-                            <b>রাবী:</b> উম্মুল মু'মিনীন আয়েশা (রাঃ)<br>
-                            <b>সূত্র:</b> ${bookName}, কিতাবুল ওহী
+
+                        <div style="margin-top:10px;">
+                            <button class="tika-btn" onclick="saveBookmark('${bookName}', 'সকল কাজ নিয়তের ওপর নির্ভরশীল...')">🔖 বুকমার্ক করুন</button>
                         </div>
                     </div>
                 `;
             }, 200);
         }
+
+        function toggleTika(id) {
+            document.getElementById(id).classList.toggle('show');
+        }
+
+        function saveBookmark(book, text) {
+            let saved = JSON.parse(localStorage.getItem('myBookmarks')) || [];
+            saved.push({book, text});
+            localStorage.setItem('myBookmarks', JSON.stringify(saved));
+            alert('হাদিসটি কালেকশনে বুকমার্ক করা হয়েছে!');
+            updateStats();
+        }
+
+        function loadSaved() {
+            let saved = JSON.parse(localStorage.getItem('myBookmarks')) || [];
+            const container = document.getElementById('savedList');
+            if(saved.length === 0) {
+                container.innerHTML = '<div class="card"><p style="text-align:center; color: var(--text-muted);">কোনো বুকমার্ক সেভ করা নেই।</p></div>';
+                return;
+            }
+            container.innerHTML = saved.map(s => `
+                <div class="card">
+                    <span class="badge">${s.book}</span>
+                    <div class="hadith-text">${s.text}</div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats() {
+            let saved = JSON.parse(localStorage.getItem('myBookmarks')) || [];
+            document.getElementById('bookmarkCount').innerText = saved.length;
+        }
+
+        function initQibla() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    document.getElementById('qiblaDeg').innerText = "২৭৮° প";
+                    document.getElementById('qiblaDist').innerText = "৫১৭৩ কিমি";
+                    document.getElementById('compassNeedle').style.transform = "rotate(278deg)";
+                });
+            }
+        }
+
+        updateStats();
     </script>
 </body>
 </html>
