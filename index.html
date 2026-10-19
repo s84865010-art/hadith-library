@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html lang="bn">
+<html b:css='false' b:defaultmessages='false' b:layoutsVersion='3' b:responsive='true' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='UTF-8'/>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
     <title>আল-হাদিস, মাসআলা ও কুরআন লাইব্রেরি</title>
-    <style>
+    <b:skin><![CDATA[
         :root {
             --bg-color: #0b0c10;
             --card-bg: #12141a;
@@ -36,21 +37,18 @@
         .card p { margin: 0; color: var(--text-muted); font-size: 12px; }
         .badge { background: rgba(212, 175, 55, 0.15); color: var(--gold-primary); padding: 3px 8px; border-radius: 12px; font-size: 11px; float: right; border: 1px solid rgba(212, 175, 55, 0.3); }
 
+        .arabic-text { font-size: 20px; text-align: right; color: var(--gold-light); margin-bottom: 8px; line-height: 1.8; direction: rtl; }
+        .bangla-text { font-size: 14px; color: var(--text-main); line-height: 1.6; margin-bottom: 10px; }
+
         .hadith-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .badge-sahih { background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 3px 7px; border-radius: 6px; font-size: 11px; border: 1px solid #10b981; }
-        .tika-btn { background: rgba(212, 175, 55, 0.1); color: var(--gold-primary); border: 1px solid var(--gold-primary); padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold; }
-        .hadith-text { font-size: 14px; line-height: 1.6; margin: 10px 0; color: var(--text-main); }
+        .tika-btn { background: rgba(212, 175, 55, 0.1); color: var(--gold-primary); border: 1px solid var(--gold-primary); padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold; margin-right: 5px; }
         
         .tika-box { display: none; background: rgba(212, 175, 55, 0.04); border-top: 1px dashed var(--border-color); padding-top: 10px; margin-top: 10px; font-size: 12px; }
         .tika-box.show { display: block; }
         .tika-item { margin-bottom: 6px; color: var(--gold-light); line-height: 1.5; }
-        .tika-item b { color: var(--gold-primary); }
 
-        /* রিয়েল সেন্সর কম্পাস কেসিং */
-        .compass-card { text-align: center; padding: 20px; }
-        .compass-dial { width: 220px; height: 220px; border: 4px solid var(--gold-primary); border-radius: 50%; margin: 15px auto; position: relative; background: #07080a; box-shadow: 0 0 15px rgba(212,175,55,0.2); transition: transform 0.1s ease-out; }
-        .compass-pointer { width: 6px; height: 100px; background: linear-gradient(to top, transparent 50%, red 50%); position: absolute; top: 10px; left: 107px; border-radius: 3px; }
-        .kaaba-icon { position: absolute; top: 25px; left: 100px; font-size: 20px; }
+        .audio-player { width: 100%; height: 30px; margin-top: 8px; }
 
         .page-view { display: none; }
         .page-view.active { display: block; }
@@ -61,257 +59,74 @@
         .nav-item div { font-size: 18px; margin-bottom: 2px; }
 
         .loading-spinner { text-align: center; padding: 30px; color: var(--gold-primary); font-weight: bold; }
-    </style>
+    ]]></b:skin>
 </head>
 <body>
 
+    <b:section id='main_blog' showaddelement='no'/>
+
     <header>
-        <h1 onclick="showHome()">আল-হাদিস ও কুরআন লাইব্রেরি</h1>
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-box" placeholder="হাদিস নম্বর, শব্দ বা বিষয় লিখে খুঁজুন..." onkeyup="globalSearch()">
+        <h1 onclick='showHome()'>আল-হাদিস ও কুরআন লাইব্রেরি</h1>
+        <div class='search-container'>
+            <input class='search-box' id='searchInput' onkeyup='globalSearch()' placeholder='হাদিস বা বিষয় লিখে খুঁজুন...' type='text'/>
         </div>
     </header>
 
-    <div class="container">
+    <div class='container'>
         
-        <!-- ১. হোম পেজ (প্রধান কিতাবসমূহ) -->
-        <div id="homeView" class="page-view active">
-            <div class="grid-menu">
-                <div class="grid-item" onclick="switchTab('quranView', document.querySelectorAll('.nav-item')[1])"><div>📖</div><span>আল-কুরআন</span></div>
-                <div class="grid-item" onclick="switchTab('qiblaView')"><div>🧭</div><span>কম্পাস</span></div>
-                <div class="grid-item" onclick="switchTab('namazView')"><div>⏰</div><span>ওয়াক্ত</span></div>
-                <div class="grid-item" onclick="switchTab('savedView', document.querySelectorAll('.nav-item')[2])"><div>🔖</div><span>কালেকশন</span></div>
+        <!-- ১. হোম পেজ -->
+        <div class='page-view active' id='homeView'>
+            <div class='grid-menu'>
+                <div class='grid-item' onclick="switchTab('quranView', document.querySelectorAll('.nav-item')[1]); loadQuranSurahList();"><div>📖</div><span>আল-কুরআন</span></div>
+                <div class='grid-item' onclick="switchTab('savedView', document.querySelectorAll('.nav-item')[2])"><div>🔖</div><span>কালেকশন</span></div>
+                <div class='grid-item' onclick="switchTab('namazView')"><div>⏰</div><span>ওয়াক্ত</span></div>
+                <div class='grid-item' onclick="alert('প্রোফাইল তথ্য শীঘ্রই আসছে!')"><div>👤</div><span>প্রোফাইল</span></div>
             </div>
 
-            <div class="section-title">প্রধান হাদিস কিতাবসমূহ (API সচল)</div>
+            <div class='section-title'>প্রধান হাদিস কিতাবসমূহ (সচল API)</div>
             
-            <div class="card card-clickable" onclick="fetchBookApi('Bukhari', 'সহীহ বুখারী')">
-                <span class="badge">৭৫৬৩ হাদিস</span>
+            <div class='card card-clickable' onclick="fetchHadithBook('bukhari', 'সহীহ বুখারী')">
+                <span class='badge'>৭৫৬৩ হাদিস</span>
                 <h3>সহীহ বুখারী</h3>
-                <p>ইমাম বুখারী (রহ.) - সম্পূর্ণ হাদিস ও মাসআলা</p>
+                <p>ইমাম বুখারী (রহ.)</p>
             </div>
             
-            <div class="card card-clickable" onclick="fetchBookApi('Muslim', 'সহীহ মুসলিম')">
-                <span class="badge">৭৫৪৭ হাদিস</span>
+            <div class='card card-clickable' onclick="fetchHadithBook('muslim', 'সহীহ মুসলিম')">
+                <span class='badge'>৭৫৪৭ হাদিস</span>
                 <h3>সহীহ মুসলিম</h3>
                 <p>ইমাম মুসলিম (রহ.)</p>
             </div>
 
-            <div class="card card-clickable" onclick="fetchBookApi('AbuDaud', 'সুনানে আবু দাউদ')">
-                <span class="badge">৫২৭৪ হাদিস</span>
+            <div class='card card-clickable' onclick="fetchHadithBook('abudawud', 'সুনানে আবু দাউদ')">
+                <span class='badge'>৫২৭৪ হাদিস</span>
                 <h3>সুনানে আবু দাউদ</h3>
                 <p>ইমাম আবু দাউদ (রহ.)</p>
             </div>
 
-            <div class="card card-clickable" onclick="fetchBookApi('Al-Nasai', 'সুনানে আন-নাসায়ী')">
-                <span class="badge">৫৭৫৮ হাদিস</span>
+            <div class='card card-clickable' onclick="fetchHadithBook('nasai', 'সুনানে আন-নাসায়ী')">
+                <span class='badge'>৫৭৫৮ হাদিস</span>
                 <h3>সুনানে আন-নাসায়ী</h3>
                 <p>ইমাম নাসায়ী (রহ.)</p>
             </div>
         </div>
 
-        <!-- ২. আল-কুরআন পেজ (API কানেক্টেড) -->
-        <div id="quranView" class="page-view">
-            <div class="section-title">আল-কুরআন (১১৪টি সূরা - লাইভ অনুবাদ)</div>
-            <div id="quranList" class="loading-spinner">⏳ কুরআনের তালিকা লোড হচ্ছে...</div>
+        <!-- ২. আল-কুরআন সূরা তালিকা -->
+        <div class='page-view' id='quranView'>
+            <div class='section-title'>আল-কুরআন (১১৪টি সূরা)</div>
+            <div class='loading-spinner' id='quranList'>⏳ কুরআনের তালিকা লোড হচ্ছে...</div>
         </div>
 
-        <!-- ৩. হাদিস দেখার পেজ -->
-        <div id="hadithView" class="page-view">
-            <div class="section-title">
-                <span id="bookTitle">কিতাবের নাম</span>
-                <button style="background:var(--gold-primary); border:none; border-radius:10px; padding:3px 8px; font-weight:bold; cursor:pointer;" onclick="showHome()">← ব্যাক</button>
+        <!-- ৩. আয়াতের ডিটেইলস ও তেলাওয়াত পেজ -->
+        <div class='page-view' id='surahDetailView'>
+            <div class='section-title'>
+                <span id='surahTitle'>সূরা বিস্তারিত</span>
+                <button onclick="switchTab('quranView', document.querySelectorAll('.nav-item')[1])" style='background:var(--gold-primary); border:none; border-radius:10px; padding:3px 8px; font-weight:bold; cursor:pointer;'>← ব্যাক</button>
             </div>
-            <div id="hadithList"></div>
+            <div id='ayahList'></div>
         </div>
 
-        <!-- ৪. রিয়েল সেন্সর ক্বিবলা কম্পাস -->
-        <div id="qiblaView" class="page-view">
-            <div class="section-title">সেন্সরভিত্তিক ক্বিবলা কম্পাস</div>
-            <div class="card compass-card">
-                <h3 id="compassDegreeText" style="color:var(--gold-primary); margin-bottom:10px;">ফোনটি হাতে ঘুরিয়ে ক্বিবলা সামঞ্জস্য করুন</h3>
-                <div id="compassDial" class="compass-dial">
-                    <div class="compass-pointer"></div>
-                    <div class="kaaba-icon">🕋</div>
-                </div>
-                <button class="tika-btn" onclick="startCompassSensor()" style="margin-top:10px;">🧭 সেন্সর চালু করুন</button>
-                <p style="font-size:11px; color:var(--text-muted); margin-top:10px;">ফোনটি সমতল জায়গায় রেখে ক্বিবলার দিকে ঘোরান।</p>
-            </div>
-        </div>
-
-        <!-- ৫. সেভড / কালেকশন -->
-        <div id="savedView" class="page-view">
-            <div class="section-title">বুকমার্ক ও সেভ করা হাদিস</div>
-            <div id="savedList"></div>
-        </div>
-
-        <!-- ৬. নামাজের সময়সূচী -->
-        <div id="namazView" class="page-view">
-            <div class="section-title">লাইভ নামাজের সময়সূচী ও ওয়াক্ত</div>
-            <div id="namazList"></div>
-        </div>
-
-    </div>
-
-    <nav class="bottom-nav">
-        <div class="nav-item active" onclick="switchTab('homeView', this)"><div>🏠</div>হোম</div>
-        <div class="nav-item" onclick="switchTab('quranView', this); loadQuranApi()"><div>📖</div>কুরআন</div>
-        <div class="nav-item" onclick="switchTab('savedView', this); loadSaved()"><div>🔖</div>কালেকশন</div>
-        <div class="nav-item" onclick="switchTab('namazView', this); fetchNamazTimes()"><div>⏰</div>নামাজ</div>
-    </nav>
-
-    <script>
-        let allHadiths = [];
-
-        function switchTab(viewId, element) {
-            document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
-            if(element) element.classList.add('active');
-            window.scrollTo(0, 0);
-
-            if(viewId === 'qiblaView') startCompassSensor();
-        }
-
-        function showHome() {
-            switchTab('homeView', document.querySelectorAll('.nav-item')[0]);
-        }
-
-        // হাদিস এপিআই
-        function fetchBookApi(bookCode, bookName) {
-            document.getElementById('bookTitle').innerText = bookName;
-            const hadithList = document.getElementById('hadithList');
-            hadithList.innerHTML = '<div class="loading-spinner">⏳ হাদিস লোড হচ্ছে...</div>';
-            
-            switchTab('hadithView');
-
-            const apiUrl = `https://cdn.jsdelivr.net/gh/md-rifatkhan/hadithbangla@main/${bookCode}/Chapter/1.json`;
-
-            fetch(apiUrl)
-                .then(res => res.json())
-                .then(data => {
-                    allHadiths = data;
-                    renderHadiths(data, bookName);
-                })
-                .catch(() => {
-                    hadithList.innerHTML = '<p style="text-align:center; color:red;">নেটওয়ার্ক সমস্যা। পুনরায় চেষ্টা করুন।</p>';
-                });
-        }
-
-        function renderHadiths(hadiths, bookName) {
-            const container = document.getElementById('hadithList');
-            if(!hadiths || hadiths.length === 0) {
-                container.innerHTML = '<p style="text-align:center;">কোনো হাদিস পাওয়া যায়নি।</p>';
-                return;
-            }
-
-            container.innerHTML = hadiths.map((h, i) => `
-                <div class="card search-item">
-                    <div class="hadith-header">
-                        <span class="badge-sahih">হাদিস নং: ${h.hadith_id || (i + 1)}</span>
-                        <button class="tika-btn" onclick="toggleTika('tika-${i}')">🔍 বিস্তারিত, সূত্র ও মতভেদ</button>
-                    </div>
-                    
-                    <div class="hadith-text">${h.bn || h.hadithBangla || h.text}</div>
-                    
-                    <div id="tika-${i}" class="tika-box">
-                        <div class="tika-item"><b>১. সূত্র ও সনদ:</b> ${bookName}, কিতাবুল ইমান, হাদিস নম্বর: ${h.hadith_id || (i + 1)}</div>
-                        <div class="tika-item"><b>২. বর্ণনাকারী (রাবী):</b> ${h.narrator || 'সহীহ সনদে বর্ণিত'}</div>
-                        <div class="tika-item"><b>৩. ফিকহি নিয়ম ও মতভেদ:</b> আলেমদের অভিমত অনুযায়ী এটি অত্যন্ত গুরুত্বপূর্ণ মূলনীতিভিত্তিক হাদিস। অমুক মাযহাব ও ফকীহগণের দৃষ্টিভঙ্গিতে এই বিষয়ে সাধারণ আমলের নির্দেশনা রয়েছে।</div>
-                    </div>
-
-                    <div style="margin-top:10px;">
-                        <button class="tika-btn" onclick="saveBookmark('${bookName}', '${(h.bn || '').replace(/'/g, "")}')">🔖 সেভ করুন</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // আল-কুরআন এপিআই লোড
-        function loadQuranApi() {
-            const container = document.getElementById('quranList');
-            if(container.children.length > 1) return;
-
-            fetch('https://api.alquran.cloud/v1/surah')
-                .then(res => res.json())
-                .then(data => {
-                    container.innerHTML = data.data.map(s => `
-                        <div class="card">
-                            <span class="badge">${s.revelationType === 'Meccan' ? 'মাক্কী' : 'মাদানী'}</span>
-                            <h3>${s.number}. ${s.englishName} (${s.name})</h3>
-                            <p>আয়াত সংখ্যা: ${s.numberOfAyahs} | অর্থ: ${s.englishNameTranslation}</p>
-                        </div>
-                    `).join('');
-                });
-        }
-
-        function toggleTika(id) {
-            document.getElementById(id).classList.toggle('show');
-        }
-
-        // লাইভ সার্চ ইঞ্জিন
-        function globalSearch() {
-            let q = document.getElementById('searchInput').value.toLowerCase();
-            let items = document.querySelectorAll('.search-item');
-            items.forEach(el => {
-                if(el.innerText.toLowerCase().includes(q)) {
-                    el.style.display = 'block';
-                } else {
-                    el.style.display = 'none';
-                }
-            });
-        }
-
-        // সেন্সরভিত্তিক রিয়েল কম্পাস (Device Orientation)
-        function startCompassSensor() {
-            if (window.DeviceOrientationEvent) {
-                window.addEventListener('deviceorientation', function(e) {
-                    let alpha = e.alpha || 0; 
-                    document.getElementById('compassDial').style.transform = `rotate(${-alpha}deg)`;
-                    document.getElementById('compassDegreeText').innerText = `কম্পাস দিক: ${Math.round(alpha)}°`;
-                }, true);
-            } else {
-                document.getElementById('compassDegreeText').innerText = "আপনার ডিভাইসে সেন্সর সাপোর্ট করছে না।";
-            }
-        }
-
-        function saveBookmark(book, text) {
-            let saved = JSON.parse(localStorage.getItem('myBookmarks')) || [];
-            saved.push({book, text});
-            localStorage.setItem('myBookmarks', JSON.stringify(saved));
-                alert('হাদিসটি সেভ করা হয়েছে!');
-        }
-
-        function loadSaved() {
-            let saved = JSON.parse(localStorage.getItem('myBookmarks')) || [];
-            const container = document.getElementById('savedList');
-            if(saved.length === 0) {
-                container.innerHTML = '<div class="card"><p style="text-align:center;">কোনো সেভ করা হাদিস নেই।</p></div>';
-                return;
-            }
-            container.innerHTML = saved.map(s => `
-                <div class="card">
-                    <span class="badge">${s.book}</span>
-                    <div class="hadith-text">${s.text}</div>
-                </div>
-            `).join('');
-        }
-
-        function fetchNamazTimes() {
-            const container = document.getElementById('namazList');
-            fetch('https://api.aladhan.com/v1/timingsByCity?city=Dhaka&country=Bangladesh&method=1')
-                .then(res => res.json())
-                .then(data => {
-                    const t = data.data.timings;
-                    container.innerHTML = `
-                        <div class="card"><h3>ফজর: ${t.Fajr} AM</h3></div>
-                        <div class="card"><h3>যোহর: ${t.Dhuhr} PM</h3></div>
-                        <div class="card"><h3>আসর: ${t.Asr} PM</h3></div>
-                        <div class="card"><h3>মাগরিব: ${t.Maghrib} PM</h3></div>
-                        <div class="card"><h3>এশা: ${t.Isha} PM</h3></div>
-                    `;
-                });
-        }
-    </script>
-</body>
-</html>
+        <!-- ৪. হাদিস দেখার পেজ -->
+        <div class='page-view' id='hadithView'>
+            <div class='section-title'>
+                <span id='bookTitle'>কিতাবের নাম</span>
+                <button onclick='showHome()' style='background:var(--gold-primary); border:none; border-radius:10px; padding:3px 8px; font-weight:bold; cursor:pointer;'>←
