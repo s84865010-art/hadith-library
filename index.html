@@ -1,684 +1,85 @@
 
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10271f">
-<title>Noor Islamic — হাদিস পাঠাগার</title>
-<style>
-:root{
-  --bg:#0b1713;--panel:#13251e;--panel2:#1a3027;
-  --gold:#d9b66d;--text:#f3f0e6;--muted:#b4c2b8;
-  --line:#30483c;--green:#2b5945;--red:#b95757;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-  font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
-button,input,select{font:inherit}
-button{cursor:pointer}
-button:focus-visible,input:focus-visible,select:focus-visible{
-  outline:2px solid var(--gold);outline-offset:2px}
-header{background:#10271f;border-bottom:1px solid var(--line);
-  padding:18px 14px 22px}
-.top{max-width:1200px;margin:auto}
-.brand{display:flex;align-items:center;gap:12px;margin-bottom:17px}
-.logo{width:46px;height:46px;border:1px solid var(--gold);border-radius:14px;
-  display:grid;place-items:center;color:var(--gold);font-size:25px}
-h1{font-size:23px;margin:0;color:var(--gold)}
-.subtitle{color:var(--muted);font-size:13px;margin-top:4px}
-.searchrow{display:flex;gap:8px}
-.searchrow input{min-width:0;flex:1}
-input,select{background:#0b1b14;color:var(--text);border:1px solid var(--line);
-  border-radius:10px;padding:12px;width:100%}
-.btn{border:1px solid var(--line);border-radius:10px;padding:10px 13px;
-  background:var(--panel2);color:var(--text)}
-.btn.primary{background:var(--gold);color:#1c2118;border-color:var(--gold);
-  font-weight:700}
-.btn:hover{filter:brightness(1.12)}
-.searchhint{font-size:12px;color:var(--muted);margin-top:8px}
-nav{display:flex;gap:8px;overflow-x:auto;padding:12px 0 0}
-nav button{white-space:nowrap}
-main{max-width:1200px;margin:0 auto;padding:18px 14px 50px}
-.sectionhead{display:flex;justify-content:space-between;align-items:center;
-  gap:12px;flex-wrap:wrap;margin:10px 0 14px}
-h2{font-size:19px;margin:0}
-h3{font-size:16px;margin:0 0 8px}
-.muted{color:var(--muted)}
-.small{font-size:12px}
-.books{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.book{background:var(--panel);border:1px solid var(--line);border-radius:13px;
-  padding:15px 12px;text-align:left;color:var(--text);min-height:112px}
-.book strong{display:block;font-size:15px;margin-bottom:7px}
-.book span{display:block;color:var(--muted);font-size:12px;line-height:1.5}
-.book.active{border-color:var(--gold);background:#20382b}
-.book.unavailable{opacity:.78}
-.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:16px;
-  align-items:start;margin-top:24px}
-.sidebar,.contentbox{background:var(--panel);border:1px solid var(--line);
-  border-radius:14px;min-width:0}
-.sidebar{position:sticky;top:10px;max-height:78vh;overflow:auto;padding:13px}
-.sidebar h3{color:var(--gold)}
-.chapter{display:block;width:100%;text-align:left;background:transparent;
-  color:var(--text);border:0;border-bottom:1px solid #263c31;
-  padding:11px 5px;line-height:1.55}
-.chapter:hover,.chapter.active{color:var(--gold);background:#20372b}
-.chapter small{display:block;color:var(--muted);font-size:11px}
-.contentbox{padding:15px}
-.status{border:1px solid var(--line);background:#0e1e17;border-radius:10px;
-  padding:12px;margin-bottom:14px;color:var(--muted);font-size:13px}
-.hadith{background:#102019;border:1px solid var(--line);border-radius:13px;
-  padding:16px;margin:0 0 14px;scroll-margin-top:15px}
-.hadithtop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.number{color:var(--gold);font-weight:700}
-.iconbtn{border:1px solid var(--line);background:var(--panel2);color:var(--text);
-  border-radius:9px;padding:7px 10px}
-.grade{display:inline-block;border:1px solid #59765e;border-radius:20px;
-  padding:4px 9px;font-size:12px;color:#bce1c1;margin:9px 0}
-.arabic{font-family:"Noto Naskh Arabic","Amiri",serif;direction:rtl;
-  text-align:right;font-size:25px;line-height:2.05;margin:17px 0}
-.translation{font-size:16px;line-height:1.95;white-space:pre-wrap}
-.narrator{font-size:13px;color:var(--muted);margin:10px 0}
-.hadithactions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.details{margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}
-.details p{line-height:1.8;font-size:14px}
-.pager{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px 0}
-.hidden{display:none!important}
-footer{border-top:1px solid var(--line);padding:20px 14px;color:var(--muted);
-  text-align:center;font-size:12px;line-height:1.8}
-.empty{padding:28px 10px;text-align:center;color:var(--muted);line-height:1.9}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-  background:#e4d19b;color:#18241c;padding:11px 16px;border-radius:10px;
-  z-index:10;max-width:90%;display:none}
-@media(max-width:720px){
-  .books{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .layout{grid-template-columns:1fr}
-  .sidebar{position:static;max-height:280px}
-  .contentbox{padding:10px}
-  .hadith{padding:12px}
-  .arabic{font-size:23px}
-  h1{font-size:20px}
-}
-@media(max-width:380px){
-  .books{grid-template-columns:1fr}
-  .searchrow{flex-wrap:wrap}
-  .searchrow .btn{flex:1}
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="top">
-    <div class="brand">
-      <div class="logo">۞</div>
-      <div>
-        <h1>Noor Islamic</h1>
-        <div class="subtitle">হাদিস পাঠাগার ও গবেষণা</div>
-      </div>
-    </div>
+name: Import Hadith JSON Files
 
-    <form class="searchrow" id="searchForm">
-      <input id="searchInput" type="search"
-        placeholder="কিতাবের নাম ও হাদিস নম্বর লিখুন — বুখারি ১"
-        aria-label="কিতাবের নাম ও হাদিস নম্বর" required>
-      <button class="btn primary" type="submit">খুঁজুন</button>
-    </form>
-    <div class="searchhint">
-      উদাহরণ: বুখারি ১ · মুসলিম ১০ · আবু দাউদ ২৫ · Bukhari 1
-    </div>
-    <nav aria-label="প্রধান মেনু">
-      <button class="btn" data-view="home">হোম</button>
-      <button class="btn" data-view="saved">সেভ করা হাদিস</button>
-      <button class="btn" data-view="about">ওয়েবসাইট সম্পর্কে</button>
-    </nav>
-  </div>
-</header>
+on:
+  workflow_dispatch:
 
-<main>
-  <section id="homeSection">
-    <div class="sectionhead">
-      <h2>নয়টি মূল হাদিসগ্রন্থ</h2>
-      <span class="muted small">কিতাব নির্বাচন করুন</span>
-    </div>
-    <div class="books" id="bookGrid"></div>
-  </section>
+permissions:
+  contents: write
 
-  <section class="layout" id="readerSection">
-    <aside class="sidebar">
-      <h3 id="chapterTitle">অধ্যায়সমূহ</h3>
-      <input id="chapterFilter" type="search" placeholder="অধ্যায় খুঁজুন…"
-        aria-label="অধ্যায় খুঁজুন">
-      <div id="chapterList">
-        <div class="empty">প্রথমে একটি কিতাব নির্বাচন করুন।</div>
-      </div>
-    </aside>
+jobs:
+  import-json:
+    runs-on: ubuntu-latest
 
-    <section class="contentbox">
-      <div class="sectionhead">
-        <div>
-          <h2 id="currentTitle">হাদিস পাঠ</h2>
-          <div class="muted small" id="currentSubtitle">কিতাব ও অধ্যায় নির্বাচন করুন</div>
-        </div>
-        <button class="btn" id="topBtn">উপরে ↑</button>
-      </div>
-      <div id="status" class="status" role="status">
-        কিতাব নির্বাচন করলে অধ্যায়ের তালিকা এখানে আসবে।
-      </div>
-      <div id="hadithList"></div>
-      <div id="pager" class="pager"></div>
-    </section>
-  </section>
+    steps:
+      - name: Checkout Noor Islamic
+        uses: actions/checkout@v4
 
-  <section id="savedSection" class="hidden">
-    <div class="sectionhead">
-      <h2>সেভ করা হাদিস</h2>
-      <button class="btn" id="clearSaved">সব মুছুন</button>
-    </div>
-    <div class="muted small" style="margin-bottom:14px">
-      এই তালিকা এই ব্রাউজারেই সংরক্ষিত থাকবে।
-    </div>
-    <div id="savedList"></div>
-  </section>
+      - name: Download and validate nine JSON books
+        shell: bash
+        run: |
+          set -euo pipefail
 
-  <section id="aboutSection" class="hidden">
-    <div class="contentbox">
-      <h2>ওয়েবসাইট সম্পর্কে</h2>
-      <p>নূর ইসলামিক একটি হাদিস পাঠাগারের প্রাথমিক সংস্করণ।</p>
-      <p>এখানে প্রকাশ্য ডেটা-সোর্স থেকে হাদিসের পাঠ ও অধ্যায় আনার চেষ্টা করা হয়।
-      বাইরের ডেটা-সার্ভার বন্ধ থাকলে কিছু তথ্য লোড নাও হতে পারে।</p>
-      <p>হাদিসের মান, সনদ এবং আলেমদের মতামত সম্পর্কে সিদ্ধান্ত নেওয়ার আগে
-      মূল গ্রন্থ ও নির্ভরযোগ্য তাহকিক যাচাই করুন।</p>
-      <p class="muted small">এই সংস্করণে পূর্ণ সনদ, সব আলেমের মতভেদ এবং
-      প্রামাণ্য ব্যাখ্যার সম্পূর্ণ ডেটাবেস সংযুক্ত নেই। যেখানে তথ্য নেই,
-      সেখানে তা স্পষ্ট করে জানানো হবে।</p>
-    </div>
-  </section>
-</main>
+          mkdir -p data
 
-<footer>
-  Noor Islamic · হাদিস পড়ুন, সূত্র যাচাই করুন, জ্ঞান অর্জন করুন।<br>
-  বাহ্যিক ডেটা-সোর্সের প্রাপ্যতার ওপর হাদিস লোড হওয়া নির্ভর করে।
-</footer>
-<div id="toast" role="status"></div>
+          BASE="https://raw.githubusercontent.com/AhmedBaset/hadith-json/v1.2.0/db/by_book/the_9_books"
 
-<script>
-"use strict";
+          download_book() {
+            local source_name="$1"
+            local output_name="$2"
 
-/*
- * ডেটা-সোর্স:
- * Kafela Network Hadith API — প্রকাশ্য GitHub JSON ফাইল।
- * এটি তৃতীয় পক্ষের ডেটা; প্রতিটি রেকর্ডের নির্ভুলতা আলাদাভাবে
- * যাচাই না করে এটিকে চূড়ান্ত গবেষণার বিকল্প হিসেবে ধরবেন না।
- */
-const DATA_ROOT =
- "https://cdn.jsdelivr.net/gh/kafelanetwork/hadith-api@main/";
+            echo "Downloading ${source_name}.json"
 
-const books = [
- {
-  id:"bukhari",name:"সহিহ বুখারি",short:"বুখারি",english:"Sahih al-Bukhari",
-  folder:"Bukhari",meta:"Bukhari/Meta/bukhari.json",total:7563,available:true,
-  aliases:["bukhari","বুখারি","বুখারী","সহিহ বুখারি","সহীহ বুখারী"]
- },
- {
-  id:"muslim",name:"সহিহ মুসলিম",short:"মুসলিম",english:"Sahih Muslim",
-  folder:"Muslim",meta:"Muslim/Meta/muslim.json",total:7453,available:true,
-  aliases:["muslim","মুসলিম","সহিহ মুসলিম","সহীহ মুসলিম"]
- },
- {
-  id:"abudawud",name:"সুনান আবু দাউদ",short:"আবু দাউদ",english:"Sunan Abu Dawood",
-  folder:"AbuDaud",meta:"AbuDaud/Meta/abudaud.json",total:5274,available:true,
-  aliases:["abu daud","abu dawud","আবু দাউদ","আবু দাউদ","আবুদাউদ"]
- },
- {
-  id:"tirmidhi",name:"জামে আত-তিরমিজি",short:"তিরমিজি",english:"Jami at-Tirmidhi",
-  folder:"At-tirmizi",meta:"At-tirmizi/Meta/at-tirmizi.json",total:3956,available:true,
-  aliases:["tirmidhi","tirmizi","তিরমিজি","তিরমিযী","তিরমিজি"]
- },
- {
-  id:"nasai",name:"সুনান আন-নাসাঈ",short:"নাসাঈ",english:"Sunan an-Nasa'i",
-  folder:"Al-Nasai",meta:"Al-Nasai/Meta/nasa'i.json",total:5758,available:true,
-  aliases:["nasai","nasa'i","নাসাঈ","নাসাই","নাসাঈ"]
- },
- {
-  id:"ibnmajah",name:"সুনান ইবনে মাজাহ",short:"ইবনে মাজাহ",english:"Sunan Ibn Majah",
-  folder:"Ibne-Mazah",meta:"Ibne-Mazah/Meta/ibnemajah.json",total:4341,available:true,
-  aliases:["ibn majah","ibnemajah","ইবনে মাজাহ","ইবন মাজাহ"]
- },
- {
-  id:"muwatta",name:"মুয়াত্তা ইমাম মালিক",short:"মুয়াত্তা",english:"Muwatta Malik",
-  available:false,aliases:["muwatta","মুয়াত্তা","মুয়াত্তা","মালিক"]
- },
- {
-  id:"ahmad",name:"মুসনাদ আহমাদ",short:"মুসনাদ আহমাদ",english:"Musnad Ahmad",
-  available:false,aliases:["musnad ahmad","ahmad","মুসনাদ আহমাদ","আহমাদ"]
- },
- {
-  id:"darimi",name:"সুনান আদ-দারিমি",short:"দারিমি",english:"Sunan al-Darimi",
-  available:false,aliases:["darimi","দারিমি","দারেমি","সুনান দারিমি"]
- }
-];
+            curl --fail --location --retry 3 \
+              "${BASE}/${source_name}.json" \
+              -o "data/${output_name}.json"
 
-const $ = id => document.getElementById(id);
-let activeBook = null;
-let activeChapter = null;
-let chapterData = [];
-let currentRange = {start:1,end:0,next:1};
-let loading = false;
-let currentView = "home";
-let requestToken = 0;
-let saved = readSaved();
+            python3 -m json.tool \
+              "data/${output_name}.json" \
+              > /dev/null
 
-function readSaved(){
- try{
-  const value = JSON.parse(localStorage.getItem("noorHadithSaved") || "[]");
-  return Array.isArray(value) ? value : [];
- }catch(e){ return []; }
-}
-function writeSaved(){
- try{
-  localStorage.setItem("noorHadithSaved",JSON.stringify(saved));
- }catch(e){toast("ব্রাউজারে সেভ করা যাচ্ছে না। স্টোরেজ খালি করুন।");}
-}
-function toast(message){
- const el=$("toast");
- el.textContent=message;el.style.display="block";
- clearTimeout(toast.timer);
- toast.timer=setTimeout(()=>el.style.display="none",2600);
-}
-function bnDigits(value){
- return String(value).replace(/[০-৯]/g,d=>"০১২৩৪৫৬৭৮৯".indexOf(d));
-}
-function enDigits(value){
- return String(value).replace(/[0-9]/g,d=>"০১২৩৪৫৬৭৮৯"[Number(d)]);
-}
-function esc(value){
- return String(value ?? "").replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
- })[c]);
-}
-async function getJSON(url){
- const response=await fetch(url,{cache:"force-cache"});
- if(!response.ok) throw new Error("HTTP "+response.status);
- return await response.json();
-}
-function apiHadithURL(book,num){
- return DATA_ROOT+book.folder+"/hadith/"+num+".json";
-}
-function apiMetaURL(book){return DATA_ROOT+book.meta;}
-function getHadithRecord(json){
- return json && (json.hadith || json.data || json);
-}
-function gradeOf(h){
- return h.grade || h.grade_name || h.hukm || "";
-}
-function renderBooks(){
- $("bookGrid").innerHTML=books.map(book=>`
-  <button class="book ${!book.available?"unavailable":""} ${activeBook?.id===book.id?"active":""}"
-   data-book="${book.id}">
-   <strong>${esc(book.name)}</strong>
-   <span>${esc(book.english)}</span>
-   <span>${book.available?"অধ্যায় ও হাদিস খুলুন":"ডেটা-সোর্স এখনো সংযুক্ত নয়"}</span>
-  </button>
- `).join("");
-}
-function showView(view){
- currentView=view;
- ["home","saved","about"].forEach(name=>{
-  $(name+"Section").classList.toggle("hidden",name!==view);
- });
- $("readerSection").classList.toggle("hidden",view!=="home");
- if(view==="saved")renderSaved();
- window.scrollTo({top:0,behavior:"smooth"});
-}
-function setStatus(message){$("status").textContent=message;}
+            echo "JSON verified: ${output_name}.json"
+          }
 
-async function selectBook(id){
- const book=books.find(b=>b.id===id);
- if(!book)return;
- if(!book.available){
-  toast("এই কিতাবের নির্ভরযোগ্য ডেটা এখনো সংযুক্ত করা হয়নি।");
-  return;
- }
- activeBook=book;activeChapter=null;chapterData=[];requestToken++;
- renderBooks();showView("home");
- $("chapterTitle").textContent=book.name+" — অধ্যায়";
- $("currentTitle").textContent=book.name;
- $("currentSubtitle").textContent=book.english;
- $("chapterList").innerHTML='<div class="empty">অধ্যায় লোড হচ্ছে…</div>';
- $("hadithList").innerHTML="";
- $("pager").innerHTML="";
- setStatus("অধ্যায়ের তালিকা লোড হচ্ছে…");
- try{
-  const meta=await getJSON(apiMetaURL(book));
-  if(!meta || typeof meta!=="object")throw new Error("Invalid chapter data");
-  chapterData=Object.entries(meta).map(([number,item])=>({
-   number,title:item.title || ("অধ্যায় "+number),
-   range:item.hadis_range || item.hadith_range || ""
-  }));
-  if(!chapterData.length)throw new Error("No chapters");
-  renderChapters();
-  setStatus("অধ্যায় নির্বাচন করুন। প্রতিটি অধ্যায় থেকে হাদিস ধাপে ধাপে লোড হবে।");
- }catch(error){
-  $("chapterList").innerHTML='<div class="empty">অধ্যায় লোড করা যায়নি।<br>ইন্টারনেট সংযোগ পরীক্ষা করে আবার কিতাব নির্বাচন করুন।</div>';
-  setStatus("ডেটা-সার্ভার থেকে অধ্যায় পাওয়া যায়নি।");
- }
-}
-function renderChapters(){
- const filter=$("chapterFilter").value.trim().toLowerCase();
- const items=chapterData.filter(c=>
-  (c.title+" "+c.number+" "+c.range).toLowerCase().includes(filter)
- );
- $("chapterList").innerHTML=items.map(c=>`
-  <button class="chapter ${activeChapter?.number===c.number?"active":""}"
-   data-chapter="${esc(c.number)}">
-   ${esc(c.title)}
-   <small>অধ্যায় ${enDigits(c.number)} · হাদিস ${esc(c.range)}</small>
-  </button>
- `).join("") || '<div class="empty">কোনো অধ্যায় পাওয়া যায়নি।</div>';
-}
-function parseRange(value){
- const normalized=bnDigits(value).replace(/[–—−]/g,"-");
- const match=normalized.match(/(\d+)\s*-\s*(\d+)/);
- if(!match)return null;
- return {start:Number(match[1]),end:Number(match[2])};
-}
-async function selectChapter(number){
- if(!activeBook)return;
- const chapter=chapterData.find(c=>String(c.number)===String(number));
- if(!chapter)return;
- activeChapter=chapter;
- renderChapters();
- const range=parseRange(chapter.range);
- $("currentTitle").textContent=chapter.title;
- $("currentSubtitle").textContent=activeBook.name+" · অধ্যায় "+enDigits(number);
- $("hadithList").innerHTML="";
- $("pager").innerHTML="";
- if(!range){
-  setStatus("এই অধ্যায়ের হাদিসের পরিসর ডেটা থেকে বোঝা যায়নি।");
-  return;
- }
- currentRange={start:range.start,end:range.end,next:range.start};
- await loadMore(true);
-}
-async function fetchHadith(book,num){
- const json=await getJSON(apiHadithURL(book,num));
- const h=getHadithRecord(json);
- if(!h || (!h.ar && !h.bn && !h.narrator))return null;
- return normalizeHadith(book,h,num);
-}
-function normalizeHadith(book,h,num){
- return {
-  id:book.id+":"+String(h.hadith_id ?? h.id ?? num),
-  bookId:book.id,bookName:book.name,
-  number:Number(h.hadith_id ?? h.id ?? num),
-  narrator:h.narrator || h.rawi || "",
-  arabic:h.ar || h.arabic || "",
-  bengali:h.bn || h.bengali || h.translation || "",
-  grade:gradeOf(h),
-  note:h.note || "",
-  chapterNumber:h.chapter?.chapter_number ?? "",
-  source:"Kafela Network প্রকাশ্য হাদিস ডেটা"
- };
-}
-async function loadMore(clear){
- if(!activeBook || loading)return;
- if(currentRange.next>currentRange.end){
-  $("pager").innerHTML='<span class="muted small">এই অধ্যায়ের নির্ধারিত পরিসর শেষ।</span>';
-  return;
- }
- loading=true;
- const token=requestToken;
- const start=currentRange.next;
- const end=Math.min(start+19,currentRange.end);
- $("pager").innerHTML='<span class="muted">হাদিস লোড হচ্ছে…</span>';
- setStatus("হাদিস "+enDigits(start)+"–"+enDigits(end)+" লোড হচ্ছে…");
- try{
-  const nums=Array.from({length:end-start+1},(_,i)=>start+i);
-  const results=await Promise.all(nums.map(async num=>{
-   try{return await fetchHadith(activeBook,num);}
-   catch(e){return {failed:true,number:num};}
-  }));
-  if(token!==requestToken)return;
-  const good=results.filter(x=>x && !x.failed);
-  const failed=results.filter(x=>x?.failed).length;
-  if(clear)$("hadithList").innerHTML="";
-  $("hadithList").insertAdjacentHTML("beforeend",good.map(renderHadith).join(""));
-  currentRange.next=end+1;
-  if(!good.length){
-   setStatus("এই অংশের হাদিস লোড হয়নি। ডেটা-সার্ভার বা নম্বর পরীক্ষা করুন।");
-  }else{
-   setStatus("এই অংশে "+enDigits(good.length)+"টি হাদিস লোড হয়েছে।"+
-    (failed?" "+enDigits(failed)+"টি নম্বর লোড হয়নি।":""));
-  }
-  if(currentRange.next<=currentRange.end){
-   $("pager").innerHTML='<button class="btn primary" id="loadNext">আরও ২০টি হাদিস দেখুন ↓</button>';
-  }else{
-   $("pager").innerHTML='<span class="muted small">অধ্যায়ের তালিকার শেষ অংশে পৌঁছেছেন।</span>';
-  }
- }catch(error){
-  setStatus("হাদিস লোড করা যায়নি। ইন্টারনেট সংযোগ পরীক্ষা করুন।");
-  $("pager").innerHTML='<button class="btn" id="retryLoad">আবার চেষ্টা করুন</button>';
- }finally{loading=false;}
-}
-function renderHadith(h){
- const isSaved=saved.some(x=>x.id===h.id);
- return `
- <article class="hadith" id="hadith-${esc(h.id.replace(":","-"))}">
-  <div class="hadithtop">
-   <div>
-    <div class="number">${esc(h.bookName)} · হাদিস ${enDigits(h.number)}</div>
-    ${h.grade?`<span class="grade">${esc(h.grade)}</span>`:
-      `<span class="grade">মানের তথ্য দেওয়া নেই</span>`}
-   </div>
-   <button class="iconbtn" data-details="${esc(h.id)}"
-    aria-label="হাদিসের বিস্তারিত">⋮ বিস্তারিত</button>
-  </div>
-  ${h.narrator?`<div class="narrator">বর্ণনাকারী: ${esc(h.narrator)}</div>`:""}
-  ${h.arabic?`<div class="arabic" lang="ar">${esc(h.arabic)}</div>`:
-    `<p class="muted">এই রেকর্ডে আরবি পাঠ পাওয়া যায়নি।</p>`}
-  ${h.bengali?`<div class="translation">${esc(h.bengali)}</div>`:
-    `<p class="muted">এই রেকর্ডে বাংলা পাঠ পাওয়া যায়নি।</p>`}
-  ${h.note?`<p class="small muted">ডেটা-সোর্সের নোট: ${esc(h.note)}</p>`:""}
-  <div class="hadithactions">
-   <button class="btn" data-save="${esc(h.id)}">${isSaved?"✓ সেভ করা":"☆ হাদিস সেভ করুন"}</button>
-   <button class="btn" data-copy="${esc(h.id)}">পাঠ কপি করুন</button>
-  </div>
-  <div class="details hidden" id="details-${esc(h.id)}">
-   <h3>হাদিসের বিস্তারিত</h3>
-   <p><b>কিতাব:</b> ${esc(h.bookName)}</p>
-   <p><b>হাদিস নম্বর:</b> ${enDigits(h.number)}</p>
-   <p><b>ডেটাসেটে দেওয়া মান:</b> ${esc(h.grade || "উল্লেখ নেই")}</p>
-   <p><b>বর্ণনাকারীর তথ্য:</b> ${esc(h.narrator || "উল্লেখ নেই")}</p>
-   <p><b>সনদ:</b> এই ডেটা-রেকর্ডে পূর্ণ রাবি-শৃঙ্খল আলাদাভাবে নেই।
-    তাই এখানে পূর্ণ সনদ তৈরি করে দেখানো হচ্ছে না।</p>
-   <p><b>আলেমদের বক্তব্য ও মতভেদ:</b> যাচাইযোগ্য উদ্ধৃতি ও গ্রন্থ-সূত্র
-    সংযুক্ত না থাকায় কোনো আলেমের নামে বক্তব্য দেখানো হচ্ছে না।</p>
-   <p><b>সংশ্লিষ্ট হাদিস:</b> নির্ভরযোগ্য cross-reference ডেটা এই
-    সংস্করণে সংযুক্ত নেই।</p>
-   <p><b>উৎস:</b> ${esc(h.source)}। এটি তৃতীয় পক্ষের ডেটা;
-    গবেষণায় ব্যবহারের আগে মূল গ্রন্থের সঙ্গে মিলিয়ে নিন।</p>
-  </div>
- </article>`;
-}
-function findRecord(id){
- const parts=id.split(":");
- return {book:books.find(b=>b.id===parts[0]),number:Number(parts.slice(1).join(":"))};
-}
-async function getRecordById(id){
- const {book,number}=findRecord(id);
- if(!book?.available)return null;
- return await fetchHadith(book,number);
-}
-function toggleSave(id){
- const exists=saved.some(x=>x.id===id);
- if(exists){
-  saved=saved.filter(x=>x.id!==id);toast("সেভ করা তালিকা থেকে সরানো হয়েছে।");
- }else{
-  const card=document.querySelector(`[data-save="${CSS.escape(id)}"]`);
-  const article=card?.closest(".hadith");
-  if(!article){toast("হাদিসটি পাওয়া যায়নি।");return;}
-  const book=books.find(b=>b.id===id.split(":")[0]);
-  const number=Number(id.split(":")[1]);
-  saved.push({
-   id,bookId:book.id,bookName:book.name,number,
-   narrator:article.querySelector(".narrator")?.textContent.replace("বর্ণনাকারী: ","")||"",
-   arabic:article.querySelector(".arabic")?.textContent||"",
-   bengali:article.querySelector(".translation")?.textContent||"",
-   grade:article.querySelector(".grade")?.textContent||""
-  });
-  toast("হাদিস সেভ হয়েছে।");
- }
- writeSaved();
- document.querySelectorAll(`[data-save="${CSS.escape(id)}"]`).forEach(btn=>{
-  btn.textContent=saved.some(x=>x.id===id)?"✓ সেভ করা":"☆ হাদিস সেভ করুন";
- });
- if(currentView==="saved")renderSaved();
-}
-function renderSaved(){
- if(!saved.length){
-  $("savedList").innerHTML='<div class="contentbox empty">এখনো কোনো হাদিস সেভ করা হয়নি।<br>হাদিসের নিচে “হাদিস সেভ করুন” চাপুন।</div>';
-  return;
- }
- $("savedList").innerHTML=saved.map(h=>`
-  <article class="hadith">
-   <div class="hadithtop">
-    <div class="number">${esc(h.bookName)} · হাদিস ${enDigits(h.number)}</div>
-    <button class="iconbtn" data-remove="${esc(h.id)}">সেভ সরান</button>
-   </div>
-   ${h.grade?`<span class="grade">${esc(h.grade)}</span>`:""}
-   ${h.arabic?`<div class="arabic" lang="ar">${esc(h.arabic)}</div>`:""}
-   ${h.bengali?`<div class="translation">${esc(h.bengali)}</div>`:""}
-   <div class="hadithactions">
-    <button class="btn" data-open-saved="${esc(h.id)}">মূল কিতাবে খুলুন</button>
-   </div>
-  </article>
- `).join("");
-}
+          download_book "bukhari" "bukhari"
+          download_book "muslim" "muslim"
+          download_book "abudawud" "abu-dawud"
+          download_book "tirmidhi" "tirmidhi"
+          download_book "nasai" "nasai"
+          download_book "ibnmajah" "ibn-majah"
+          download_book "malik" "muwatta"
+          download_book "ahmed" "musnad-ahmad"
+          download_book "darimi" "darimi"
 
-async function openHadith(book,number){
- if(!book?.available){
-  toast("এই কিতাবের ডেটা-সোর্স সংযুক্ত নয়।");return;
- }
- activeBook=book;activeChapter=null;chapterData=[];requestToken++;
- renderBooks();showView("home");
- $("chapterList").innerHTML='<div class="empty">অধ্যায় লোড হচ্ছে…</div>';
- $("hadithList").innerHTML="";
- $("pager").innerHTML="";
- $("currentTitle").textContent=book.name+" · হাদিস "+enDigits(number);
- $("currentSubtitle").textContent=book.english;
- setStatus("নির্দিষ্ট হাদিস লোড হচ্ছে…");
- try{
-  const [meta,h]=await Promise.all([
-   getJSON(apiMetaURL(book)).catch(()=>({})),
-   fetchHadith(book,number)
-  ]);
-  if(!h)throw new Error("Hadith not found");
-  chapterData=Object.entries(meta||{}).map(([n,item])=>({
-   number:n,title:item.title||("অধ্যায় "+n),
-   range:item.hadis_range||item.hadith_range||""
-  }));
-  renderChapters();
-  $("hadithList").innerHTML=renderHadith(h);
-  $("pager").innerHTML="";
-  setStatus("নির্দিষ্ট হাদিস লোড হয়েছে।");
- }catch(e){
-  setStatus("হাদিসটি লোড হয়নি। নম্বর বা ডেটা-সার্ভার পরীক্ষা করুন।");
-  $("hadithList").innerHTML='<div class="empty">এই নম্বরের হাদিস পাওয়া যায়নি।<br>কিতাবের নাম ও নম্বর ঠিক আছে কি না দেখুন।</div>';
- }
-}
-function parseSearch(raw){
- const q=bnDigits(raw.trim().toLowerCase());
- const normalized=q.replace(/[.,:#/]+/g," ").replace(/\s+/g," ").trim();
- const matches=books.filter(b=>b.aliases.some(alias=>
-  normalized.includes(alias.toLowerCase())
- ));
- const book=matches.sort((a,b)=>{
-  const aa=Math.max(...a.aliases.map(x=>x.length));
-  const bb=Math.max(...b.aliases.map(x=>x.length));
-  return bb-aa;
- })[0];
- const nums=normalized.match(/\d+/g);
- return {book,number:nums?Number(nums[nums.length-1]):null};
-}
-$("searchForm").addEventListener("submit",async event=>{
- event.preventDefault();
- const q=$("searchInput").value;
- const parsed=parseSearch(q);
- if(!parsed.book){
-  toast("কিতাবের নাম চিনতে পারিনি। যেমন: বুখারি ১ লিখুন।");return;
- }
- if(!parsed.book.available){
-  toast("এই কিতাবের ডেটা-সোর্স এখনো সংযুক্ত নয়।");return;
- }
- if(!parsed.number || parsed.number<1){
-  await selectBook(parsed.book.id);
-  toast("এখন অধ্যায় নির্বাচন করুন, অথবা হাদিস নম্বরসহ সার্চ করুন।");
-  return;
- }
- await openHadith(parsed.book,parsed.number);
-});
+          cat > data/SOURCES.md <<'EOF'
+          # Hadith JSON data sources
 
-$("bookGrid").addEventListener("click",event=>{
- const btn=event.target.closest("[data-book]");
- if(btn)selectBook(btn.dataset.book);
-});
-$("chapterList").addEventListener("click",event=>{
- const btn=event.target.closest("[data-chapter]");
- if(btn)selectChapter(btn.dataset.chapter);
-});
-$("chapterFilter").addEventListener("input",renderChapters);
-$("pager").addEventListener("click",event=>{
- if(event.target.id==="loadNext")loadMore(false);
- if(event.target.id==="retryLoad")loadMore(false);
-});
-$("hadithList").addEventListener("click",async event=>{
- const details=event.target.closest("[data-details]");
- const save=event.target.closest("[data-save]");
- const copy=event.target.closest("[data-copy]");
- if(details){
-  const panel=$("details-"+details.dataset.details);
-  if(panel)panel.classList.toggle("hidden");
- }
- if(save)toggleSave(save.dataset.save);
- if(copy){
-  const article=copy.closest(".hadith");
-  const text=[
-   article.querySelector(".number")?.textContent||"",
-   article.querySelector(".arabic")?.textContent||"",
-   article.querySelector(".translation")?.textContent||""
-  ].filter(Boolean).join("\n\n");
-  try{
-   await navigator.clipboard.writeText(text);
-   toast("হাদিসের পাঠ কপি হয়েছে।");
-  }catch(e){toast("কপি করা যায়নি। ব্রাউজারের অনুমতি পরীক্ষা করুন।");}
- }
-});
-$("savedList").addEventListener("click",async event=>{
- const remove=event.target.closest("[data-remove]");
- const open=event.target.closest("[data-open-saved]");
- if(remove){
-  saved=saved.filter(x=>x.id!==remove.dataset.remove);
-  writeSaved();renderSaved();toast("সেভ করা তালিকা থেকে সরানো হয়েছে।");
- }
- if(open){
-  const {book,number}=findRecord(open.dataset.openSaved);
-  await openHadith(book,number);
- }
-});
-$("clearSaved").addEventListener("click",()=>{
- if(!saved.length){toast("সেভ করা তালিকা খালি।");return;}
- if(confirm("সব সেভ করা হাদিস মুছে ফেলবেন?")){
-  saved=[];writeSaved();renderSaved();toast("সেভ করা তালিকা খালি হয়েছে।");
- }
-});
-document.querySelector("nav").addEventListener("click",event=>{
- const btn=event.target.closest("[data-view]");
- if(btn)showView(btn.dataset.view);
-});
-$("topBtn").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+          Source:
+          https://github.com/AhmedBaset/hadith-json
 
-renderBooks();
-renderSaved();
-</script>
-</body>
-</html>
+          Pinned source version: v1.2.0
+
+          The imported records contain Arabic and English text.
+          They are not a verified Bengali translation database.
+          Hadith grading, scholarly disagreements, and related
+          narrations must be independently researched.
+
+          Musnad Ahmad has missing source chapters according
+          to the source project's README.
+          EOF
+
+      - name: Commit JSON files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Import nine hadith JSON datasets"
+            git push
+          fi
