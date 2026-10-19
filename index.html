@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আল-হাদিস লাইব্রেরি - ব্ল্যাক ও গোল্ড এডিশন</title>
+    <style>
+        :root {
+            --bg-color: #09090b;
+            --card-bg: #141416;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --border-color: #2a261d;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 80px; /* বটম বারের জন্য জায়গা */
+        }
+        header {
+            text-align: center;
+            padding: 20px 15px;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(to bottom, #111, var(--bg-color));
+        }
+        h1 {
+            color: var(--gold-primary);
+            margin: 0 0 15px 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .search-box {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 30px;
+            border: 1px solid var(--gold-primary);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-size: 15px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .search-box::placeholder {
+            color: var(--text-muted);
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .section-title {
+            color: var(--gold-light);
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--gold-primary);
+            padding-left: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .card:active {
+            border-color: var(--gold-primary);
+            transform: scale(0.98);
+        }
+        .card-info h3 {
+            margin: 0 0 5px 0;
+            color: var(--gold-light);
+            font-size: 17px;
+        }
+        .card-info p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .badge {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        /* বটম নেভিগেশন বার */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #111113;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+        .nav-item {
+            text-align: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 11px;
+        }
+        .nav-item.active, .nav-item:hover {
+            color: var(--gold-primary);
+        }
+        .nav-item div {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>আল-হাদিস লাইব্রেরি</h1>
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="কিতাব বা হাদিস নম্বর লিখে খুঁজুন...">
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-title">প্রধান কিতাবসমূহ</div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-info">
+                    <h3>সহীহ বুখারী</h3>
+                    <p>ইমাম বুখারী (রহ.)</p>
+                </div>
+                <div class="badge">৭৫৬৩ হাদিস</div>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <h3>সহীহ মুসলিম</h3>
+                    <p>ইমাম মুসলিম (রহ.)</p>
+                </div>
+                <div class="badge">৭৫৪৭ হাদিস</div>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <h3>সুনানে আন-নাসায়ী</h3>
+                    <p>ইমাম নাসায়ী (রহ.)</p>
+                </div>
+                <div class="badge">৫৭৫৮ হাদিস</div>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <h3>সুনানে আবু দাউদ</h3>
+                    <p>ইমাম আবু দাউদ (রহ.)</p>
+                </div>
+                <div class="badge">৫২৭৪ হাদিস</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- বটম নেভিগেশন বার -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <div>📖</div>হাদিস
+        </a>
+        <a href="#" class="nav-item">
+            <div>🕋</div>কুরআন
+        </a>
+        <a href="#" class="nav-item">
+            <div>🧭</div>ক্বিবলা
+        </a>
+        <a href="#" class="nav-item">
+            <div>⭐</div>সেভড
+        </a>
+        <a href="#" class="nav-item">
+            <div>⏰</div>নামাজ
+        </a>
+    </nav>
+
+</body>
+</html>
