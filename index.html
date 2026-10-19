@@ -1,132 +1,874 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+
 <!DOCTYPE html>
-<html b:css='false' b:defaultmessages='false' b:layoutsVersion='3' b:responsive='true' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html lang="bn">
 <head>
-    <meta charset='UTF-8'/>
-    <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
-    <title>আল-হাদিস, মাসআলা ও কুরআন লাইব্রেরি</title>
-    <b:skin><![CDATA[
-        :root {
-            --bg-color: #0b0c10;
-            --card-bg: #12141a;
-            --gold-primary: #d4af37;
-            --gold-light: #f3e5ab;
-            --text-main: #f4f4f5;
-            --text-muted: #9ba3af;
-            --border-color: #1f242d;
-        }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding-bottom: 90px; }
-        header { text-align: center; padding: 15px; border-bottom: 1px solid var(--border-color); background: #07080a; position: sticky; top: 0; z-index: 100; }
-        h1 { color: var(--gold-primary); margin: 0 0 10px 0; font-size: 19px; cursor: pointer; }
-        .search-container { max-width: 600px; margin: 0 auto; }
-        .search-box { width: 100%; padding: 10px 15px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); font-size: 13px; outline: none; box-sizing: border-box; }
-        .search-box:focus { border-color: var(--gold-primary); }
-        .container { max-width: 800px; margin: 15px auto; padding: 0 12px; }
-        .section-title { color: var(--gold-light); font-size: 15px; margin-bottom: 12px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        
-        .grid-menu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 15px; }
-        .grid-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px 5px; text-align: center; cursor: pointer; }
-        .grid-item:active { border-color: var(--gold-primary); }
-        .grid-item div { font-size: 20px; margin-bottom: 4px; }
-        .grid-item span { font-size: 11px; color: var(--text-muted); display: block; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0b0b">
+<meta name="description" content="Noor Islamic — কুরআন, হাদিস, নামাজের সময় ও কিবলা">
+<title>Noor Islamic | নূর ইসলামিক</title>
 
-        .card { background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 10px; }
-        .card-clickable { cursor: pointer; }
-        .card-clickable:active { border-color: var(--gold-primary); }
-        .card h3 { margin: 0 0 5px 0; color: var(--gold-light); font-size: 15px; }
-        .card p { margin: 0; color: var(--text-muted); font-size: 12px; }
-        .badge { background: rgba(212, 175, 55, 0.15); color: var(--gold-primary); padding: 3px 8px; border-radius: 12px; font-size: 11px; float: right; border: 1px solid rgba(212, 175, 55, 0.3); }
-
-        .arabic-text { font-size: 20px; text-align: right; color: var(--gold-light); margin-bottom: 8px; line-height: 1.8; direction: rtl; }
-        .bangla-text { font-size: 14px; color: var(--text-main); line-height: 1.6; margin-bottom: 10px; }
-
-        .hadith-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .badge-sahih { background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 3px 7px; border-radius: 6px; font-size: 11px; border: 1px solid #10b981; }
-        .tika-btn { background: rgba(212, 175, 55, 0.1); color: var(--gold-primary); border: 1px solid var(--gold-primary); padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold; margin-right: 5px; }
-        
-        .tika-box { display: none; background: rgba(212, 175, 55, 0.04); border-top: 1px dashed var(--border-color); padding-top: 10px; margin-top: 10px; font-size: 12px; }
-        .tika-box.show { display: block; }
-        .tika-item { margin-bottom: 6px; color: var(--gold-light); line-height: 1.5; }
-
-        .audio-player { width: 100%; height: 30px; margin-top: 8px; }
-
-        .page-view { display: none; }
-        .page-view.active { display: block; }
-
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #07080a; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; }
-        .nav-item { text-align: center; color: var(--text-muted); text-decoration: none; font-size: 11px; cursor: pointer; flex: 1; }
-        .nav-item.active { color: var(--gold-primary); font-weight: bold; }
-        .nav-item div { font-size: 18px; margin-bottom: 2px; }
-
-        .loading-spinner { text-align: center; padding: 30px; color: var(--gold-primary); font-weight: bold; }
-    ]]></b:skin>
+<style>
+:root {
+  --bg:#090a09;
+  --panel:#141713;
+  --panel2:#1b1e18;
+  --gold:#d8b45a;
+  --gold2:#f1d994;
+  --text:#f4f0e5;
+  --muted:#b8b4a7;
+  --line:#34352a;
+  --green:#8ebc8d;
+  --danger:#ff9c8f;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:system-ui,-apple-system,"Noto Sans Bengali",
+  "Hind Siliguri",sans-serif;line-height:1.75
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--gold2)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{
+  outline:2px solid var(--gold);outline-offset:3px
+}
+header{
+  position:sticky;top:0;z-index:10;
+  background:#0b0c0bed;backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)
+}
+.header-inner{
+  max-width:1150px;margin:auto;padding:12px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.brand-icon{
+  width:44px;height:44px;display:grid;place-items:center;
+  border:1px solid var(--gold);border-radius:50%;color:var(--gold);
+  font-size:24px
+}
+.brand-name{font-size:20px;font-weight:800;color:var(--gold2);line-height:1.3}
+.brand-sub{font-size:11px;color:var(--muted)}
+nav{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.nav-btn,.btn{
+  border:1px solid var(--line);background:var(--panel2);color:var(--text);
+  border-radius:10px;padding:8px 12px
+}
+.nav-btn:hover,.btn:hover{border-color:var(--gold);color:var(--gold2)}
+.btn.primary{background:var(--gold);color:#17140a;border-color:var(--gold);font-weight:750}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+main{max-width:1150px;margin:auto;padding:20px 18px 70px}
+.hero{
+  position:relative;overflow:hidden;border:1px solid #51452a;
+  border-radius:22px;padding:32px 24px;margin:18px 0 22px;
+  background:radial-gradient(ellipse at top right,#44371c 0%,transparent 48%),
+  linear-gradient(135deg,#191c14,#0c0d0b 75%)
+}
+.hero:after{
+  content:"۞";position:absolute;right:18px;bottom:-65px;
+  font-size:210px;color:#d8b45a0c;pointer-events:none
+}
+.eyebrow{color:var(--gold);font-size:13px;letter-spacing:1px}
+h1{font-size:clamp(27px,5vw,43px);line-height:1.3;margin:10px 0}
+h2{font-size:23px;margin:0 0 12px}
+h3{font-size:18px;margin:0 0 8px}
+p{margin:8px 0}
+.muted{color:var(--muted)}
+.gold{color:var(--gold2)}
+.small{font-size:13px}
+.section{margin:28px 0;scroll-margin-top:90px}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.card{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:16px;padding:17px;min-width:0
+}
+.feature-card{cursor:pointer;transition:.15s}
+.feature-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.feature-icon{font-size:27px;color:var(--gold)}
+.feature-title{font-weight:750;font-size:17px;margin-top:5px}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}
+input,select{
+  color:var(--text);background:#0c0e0c;border:1px solid #454638;
+  border-radius:10px;padding:11px 12px;min-width:0;max-width:100%
+}
+input{flex:1}
+select{flex:1}
+label{display:block;color:var(--muted);font-size:13px;margin:7px 0}
+.status{padding:11px 13px;border-radius:10px;background:#171a15;color:var(--muted);margin:12px 0}
+.status.error{color:var(--danger);border:1px solid #613b35}
+.status.success{color:var(--green)}
+.ayah,.hadith-item{
+  padding:18px 0;border-bottom:1px solid var(--line)
+}
+.ayah:last-child,.hadith-item:last-child{border-bottom:0}
+.arabic{
+  direction:rtl;text-align:right;font-family:"Noto Naskh Arabic",
+  "Amiri",serif;font-size:clamp(25px,4vw,34px);
+  line-height:2.05;color:#f7e8bd;margin:10px 0
+}
+.translation{font-size:16px;line-height:1.95}
+.meta{color:var(--muted);font-size:13px}
+.ayah-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.ayah-actions button{font-size:12px;padding:6px 9px}
+.prayer-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.prayer-time{text-align:center;padding:13px 5px;background:var(--panel2);border-radius:12px;border:1px solid var(--line)}
+.prayer-time strong{display:block;color:var(--gold2);font-size:18px}
+.compass-wrap{display:grid;grid-template-columns:190px 1fr;gap:22px;align-items:center}
+.compass{
+  width:180px;height:180px;border:2px solid var(--gold);border-radius:50%;
+  margin:auto;position:relative;display:grid;place-items:center;
+  background:radial-gradient(circle,#282518,#10110f 70%)
+}
+.compass .north{position:absolute;top:5px;color:var(--gold);font-weight:800}
+.needle{font-size:56px;color:var(--gold2);transition:transform .25s}
+.footer{border-top:1px solid var(--line);padding:25px 10px;text-align:center;color:var(--muted);font-size:13px}
+.hidden{display:none!important}
+.bookmark-list{display:grid;gap:10px}
+kbd{background:#27281f;border:1px solid var(--line);border-radius:5px;padding:2px 6px}
+@media(max-width:750px){
+  .header-inner{align-items:flex-start;flex-direction:column}
+  nav{justify-content:flex-start}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .prayer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .compass-wrap{grid-template-columns:1fr}
+}
+@media(max-width:420px){
+  main{padding:12px 12px 45px}
+  .hero{padding:24px 17px}
+  .grid{grid-template-columns:1fr}
+  .nav-btn{font-size:13px;padding:7px 9px}
+  .prayer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
 </head>
+
 <body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="#home" aria-label="Noor Islamic হোম">
+      <div class="brand-icon">☪</div>
+      <div>
+        <div class="brand-name">Noor Islamic</div>
+        <div class="brand-sub">ইলম • আমল • হিদায়াত</div>
+      </div>
+    </a>
+    <nav aria-label="প্রধান মেনু">
+      <button class="nav-btn" data-go="home">হোম</button>
+      <button class="nav-btn" data-go="quran">কুরআন</button>
+      <button class="nav-btn" data-go="hadith">হাদিস</button>
+      <button class="nav-btn" data-go="prayer">নামাজ</button>
+      <button class="nav-btn" data-go="qibla">কিবলা</button>
+      <button class="nav-btn" data-go="bookmarks">বুকমার্ক</button>
+    </nav>
+  </div>
+</header>
 
-    <b:section id='main_blog' showaddelement='no'/>
+<main>
+<section id="home">
+  <div class="hero">
+    <div class="eyebrow">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1>নূরের পথে, জ্ঞানের সাথে</h1>
+    <p class="muted">আল-কুরআন, হাদিস ও দৈনন্দিন ইবাদতের প্রয়োজনীয় তথ্য—এক জায়গায়।</p>
+    <div class="toolbar">
+      <input id="globalSearch" placeholder="সূরা, আয়াত বা লোড করা হাদিস খুঁজুন…" aria-label="সার্চ">
+      <button class="btn primary" id="searchBtn">খুঁজুন</button>
+    </div>
+    <p class="small muted">তথ্য লোড করতে ইন্টারনেট প্রয়োজন। অনুবাদ ও নামাজের সময় নিজ নিজ উৎস অনুযায়ী যাচাই করুন।</p>
+  </div>
 
-    <header>
-        <h1 onclick='showHome()'>আল-হাদিস ও কুরআন লাইব্রেরি</h1>
-        <div class='search-container'>
-            <input class='search-box' id='searchInput' onkeyup='globalSearch()' placeholder='হাদিস বা বিষয় লিখে খুঁজুন...' type='text'/>
+  <div class="section">
+    <div class="section-head"><h2>প্রধান বিভাগ</h2></div>
+    <div class="grid">
+      <div class="card feature-card" data-go="quran"><div class="feature-icon">۞</div><div class="feature-title">আল-কুরআন</div><p class="muted small">সূরা, আরবি পাঠ ও বাংলা অনুবাদ</p></div>
+      <div class="card feature-card" data-go="hadith"><div class="feature-icon">📚</div><div class="feature-title">হাদিস লাইব্রেরি</div><p class="muted small">গ্রন্থ, অধ্যায় ও হাদিস অনুসন্ধান</p></div>
+      <div class="card feature-card" data-go="prayer"><div class="feature-icon">◷</div><div class="feature-title">নামাজের সময়</div><p class="muted small">শহর বা বর্তমান অবস্থান অনুযায়ী</p></div>
+      <div class="card feature-card" data-go="qibla"><div class="feature-icon">➤</div><div class="feature-title">কিবলা কম্পাস</div><p class="muted small">মক্কার দিক নির্ণয়</p></div>
+      <div class="card feature-card" data-go="bookmarks"><div class="feature-icon">☆</div><div class="feature-title">আমার বুকমার্ক</div><p class="muted small">সংরক্ষিত আয়াত ও হাদিস</p></div>
+      <div class="card feature-card" data-go="about"><div class="feature-icon">☾</div><div class="feature-title">ওয়েবসাইট পরিচিতি</div><p class="muted small">Noor Islamic সম্পর্কে জানুন</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="quran" class="section">
+  <div class="section-head"><h2>আল-কুরআন</h2><span class="meta">১১৪টি সূরা</span></div>
+  <div class="card">
+    <label for="surahSelect">সূরা নির্বাচন করুন</label>
+    <div class="toolbar">
+      <select id="surahSelect"><option value="">সূরার তালিকা লোড হচ্ছে…</option></select>
+      <button class="btn primary" id="loadSurah">সূরা পড়ুন</button>
+    </div>
+    <div class="toolbar">
+      <input id="quranSearch" placeholder="লোড করা সূরায় বাংলা/আরবি শব্দ খুঁজুন">
+      <button class="btn" id="quranSearchBtn">সার্চ</button>
+    </div>
+    <div id="quranStatus" class="status" role="status">কুরআনের সূরার তালিকা লোড হচ্ছে…</div>
+    <div id="quranInfo"></div>
+    <div id="ayahList"></div>
+    <button id="moreAyahs" class="btn hidden">আরও আয়াত দেখুন</button>
+  </div>
+</section>
+
+<section id="hadith" class="section">
+  <div class="section-head"><h2>হাদিস লাইব্রেরি</h2></div>
+  <div class="card">
+    <p class="muted small">নিচে নয়টি পরিচিত গ্রন্থের বিকল্প দেওয়া হয়েছে। কোনো গ্রন্থের নির্ভরযোগ্য API পাওয়া না গেলে সেটিকে স্পষ্টভাবে জানানো হবে—ভুয়া হাদিস দেখানো হবে না।</p>
+    <label for="hadithBook">হাদিসগ্রন্থ</label>
+    <div class="toolbar">
+      <select id="hadithBook">
+        <option value="bukhari">সহিহ বুখারি</option>
+        <option value="muslim">সহিহ মুসলিম</option>
+        <option value="abuDaud">সুনান আবু দাউদ</option>
+        <option value="tirmidi">জামে তিরমিজি</option>
+        <option value="ibnMajah">সুনান ইবনে মাজাহ</option>
+        <option value="riyadusSalihin">রিয়াদুস সালিহিন</option>
+        <option value="muslimHA">সহিহ মুসলিম (হাদিস একাডেমি)</option>
+        <option value="nawawi">নববীর ৪০ হাদিস</option>
+        <option value="adabulMufrad">আল-আদাবুল মুফরাদ</option>
+      </select>
+      <button class="btn primary" id="loadHadithChapters">অধ্যায় আনুন</button>
+    </div>
+    <label for="chapterSelect">অধ্যায়</label>
+    <div class="toolbar">
+      <select id="chapterSelect"><option value="">আগে গ্রন্থ নির্বাচন করুন</option></select>
+      <button class="btn" id="loadHadith">হাদিস দেখুন</button>
+    </div>
+    <div class="toolbar">
+      <input id="hadithSearch" placeholder="লোড করা হাদিসে শব্দ বা নম্বর খুঁজুন">
+      <button class="btn" id="hadithSearchBtn">সার্চ</button>
+    </div>
+    <div id="hadithStatus" class="status" role="status">গ্রন্থ নির্বাচন করে অধ্যায় আনুন।</div>
+    <div id="hadithList"></div>
+  </div>
+</section>
+
+<section id="prayer" class="section">
+  <div class="section-head"><h2>নামাজের সময়</h2></div>
+  <div class="card">
+    <label for="city">শহর</label>
+    <div class="toolbar">
+      <input id="city" value="Dhaka" placeholder="যেমন: Dhaka">
+      <button class="btn primary" id="loadPrayer">সময় দেখুন</button>
+      <button class="btn" id="useLocation">আমার অবস্থান</button>
+    </div>
+    <div id="prayerStatus" class="status" role="status">ঢাকার নামাজের সময় আনা হচ্ছে…</div>
+    <div id="prayerDate" class="muted small"></div>
+    <div id="prayerGrid" class="prayer-grid"></div>
+    <p class="muted small">গণনার পদ্ধতি ও স্থানীয় মসজিদের সময়ের কারণে কিছু পার্থক্য হতে পারে। স্থানীয় নির্ভরযোগ্য সময়সূচির সঙ্গে মিলিয়ে নিন।</p>
+  </div>
+</section>
+
+<section id="qibla" class="section">
+  <div class="section-head"><h2>কিবলা কম্পাস</h2></div>
+  <div class="card">
+    <div class="compass-wrap">
+      <div class="compass">
+        <span class="north">উত্তর N</span>
+        <span class="needle" id="needle">➤</span>
+      </div>
+      <div>
+        <h3>কিবলার দিক নির্ণয়</h3>
+        <p id="qiblaDegrees" class="gold">অবস্থান প্রয়োজন</p>
+        <p id="qiblaStatus" class="muted small">অবস্থানের অনুমতি দিলে মক্কার দিক হিসাব করা যাবে। কম্পাসের নির্ভুলতা ডিভাইসের সেন্সরের ওপর নির্ভর করে।</p>
+        <div class="toolbar">
+          <button class="btn primary" id="findQibla">আমার কিবলা নির্ণয় করুন</button>
+          <button class="btn" id="enableCompass">কম্পাস চালু করুন</button>
         </div>
-    </header>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class='container'>
-        
-        <!-- ১. হোম পেজ -->
-        <div class='page-view active' id='homeView'>
-            <div class='grid-menu'>
-                <div class='grid-item' onclick="switchTab('quranView', document.querySelectorAll('.nav-item')[1]); loadQuranSurahList();"><div>📖</div><span>আল-কুরআন</span></div>
-                <div class='grid-item' onclick="switchTab('savedView', document.querySelectorAll('.nav-item')[2])"><div>🔖</div><span>কালেকশন</span></div>
-                <div class='grid-item' onclick="switchTab('namazView')"><div>⏰</div><span>ওয়াক্ত</span></div>
-                <div class='grid-item' onclick="alert('প্রোফাইল তথ্য শীঘ্রই আসছে!')"><div>👤</div><span>প্রোফাইল</span></div>
-            </div>
+<section id="bookmarks" class="section">
+  <div class="section-head"><h2>আমার বুকমার্ক</h2><button class="btn" id="clearBookmarks">সব মুছুন</button></div>
+  <div class="card">
+    <p class="muted small">বুকমার্ক এই ব্রাউজারের Local Storage-এ থাকবে। ব্রাউজারের ডেটা মুছে ফেললে সংরক্ষিত তালিকা হারাতে পারে।</p>
+    <div id="bookmarkList" class="bookmark-list"></div>
+  </div>
+</section>
 
-            <div class='section-title'>প্রধান হাদিস কিতাবসমূহ (সচল API)</div>
-            
-            <div class='card card-clickable' onclick="fetchHadithBook('bukhari', 'সহীহ বুখারী')">
-                <span class='badge'>৭৫৬৩ হাদিস</span>
-                <h3>সহীহ বুখারী</h3>
-                <p>ইমাম বুখারী (রহ.)</p>
-            </div>
-            
-            <div class='card card-clickable' onclick="fetchHadithBook('muslim', 'সহীহ মুসলিম')">
-                <span class='badge'>৭৫৪৭ হাদিস</span>
-                <h3>সহীহ মুসলিম</h3>
-                <p>ইমাম মুসলিম (রহ.)</p>
-            </div>
+<section id="about" class="section">
+  <div class="card">
+    <h2>ওয়েবসাইট পরিচিতি</h2>
+    <p>Noor Islamic একটি ইসলামি জ্ঞান ও ইবাদত-সহায়ক ওয়েবসাইট। এখানে কুরআন, অনুবাদ, হাদিস, নামাজের সময় এবং কিবলা-সংক্রান্ত তথ্য এক জায়গায় পাওয়ার চেষ্টা করা হয়েছে।</p>
+    <p class="muted small">ওয়েবসাইটে প্রদর্শিত অনুবাদ, হাদিসের নম্বর ও নামাজের সময়ের জন্য মূল উৎস যাচাই করুন। এই ওয়েবসাইট নিজে কোনো হাদিসের সহিহ/দুর্বল হওয়ার চূড়ান্ত রায় দেয় না।</p>
+  </div>
+</section>
 
-            <div class='card card-clickable' onclick="fetchHadithBook('abudawud', 'সুনানে আবু দাউদ')">
-                <span class='badge'>৫২৭৪ হাদিস</span>
-                <h3>সুনানে আবু দাউদ</h3>
-                <p>ইমাম আবু দাউদ (রহ.)</p>
-            </div>
+<div id="searchResults" class="section hidden">
+  <h2>সার্চের ফলাফল</h2>
+  <div id="searchResultsList" class="card"></div>
+</div>
+</main>
 
-            <div class='card card-clickable' onclick="fetchHadithBook('nasai', 'সুনানে আন-নাসায়ী')">
-                <span class='badge'>৫৭৫৮ হাদিস</span>
-                <h3>সুনানে আন-নাসায়ী</h3>
-                <p>ইমাম নাসায়ী (রহ.)</p>
-            </div>
-        </div>
+<footer class="footer">
+  <div class="gold">☪ Noor Islamic</div>
+  <p>ইলম অর্জন করুন, যাচাই করে আমল করুন।</p>
+  <p>কুরআন ও হাদিসের তথ্য বাইরের উৎস থেকে লোড হয়।</p>
+</footer>
 
-        <!-- ২. আল-কুরআন সূরা তালিকা -->
-        <div class='page-view' id='quranView'>
-            <div class='section-title'>আল-কুরআন (১১৪টি সূরা)</div>
-            <div class='loading-spinner' id='quranList'>⏳ কুরআনের তালিকা লোড হচ্ছে...</div>
-        </div>
+<script>
+"use strict";
 
-        <!-- ৩. আয়াতের ডিটেইলস ও তেলাওয়াত পেজ -->
-        <div class='page-view' id='surahDetailView'>
-            <div class='section-title'>
-                <span id='surahTitle'>সূরা বিস্তারিত</span>
-                <button onclick="switchTab('quranView', document.querySelectorAll('.nav-item')[1])" style='background:var(--gold-primary); border:none; border-radius:10px; padding:3px 8px; font-weight:bold; cursor:pointer;'>← ব্যাক</button>
-            </div>
-            <div id='ayahList'></div>
-        </div>
+const API = {
+  quran: "https://api.alquran.cloud/v1",
+  hadith: "https://alquranbd.com/api/hadith",
+  prayer: "https://api.aladhan.com/v1"
+};
 
-        <!-- ৪. হাদিস দেখার পেজ -->
-        <div class='page-view' id='hadithView'>
-            <div class='section-title'>
-                <span id='bookTitle'>কিতাবের নাম</span>
-                <button onclick='showHome()' style='background:var(--gold-primary); border:none; border-radius:10px; padding:3px 8px; font-weight:bold; cursor:pointer;'>←
+const $ = id => document.getElementById(id);
+const state = {
+  surahs: [],
+  ayahs: [],
+  filteredAyahs: [],
+  shownAyahs: 0,
+  hadithBooks: [],
+  chapters: [],
+  hadiths: [],
+  filteredHadiths: [],
+  qiblaBearing: null,
+  userLat: null,
+  userLon: null,
+  heading: null
+};
+
+const BOOK_NAMES = {
+  bukhari: "সহিহ বুখারি",
+  muslim: "সহিহ মুসলিম",
+  abuDaud: "সুনান আবু দাউদ",
+  tirmidi: "জামে তিরমিজি",
+  ibnMajah: "সুনান ইবনে মাজাহ",
+  riyadusSalihin: "রিয়াদুস সালিহিন",
+  muslimHA: "সহিহ মুসলিম (হাদিস একাডেমি)",
+  nawawi: "নববীর ৪০ হাদিস",
+  adabulMufrad: "আল-আদাবুল মুফরাদ"
+};
+
+const AVAILABLE_HADITH_KEYS = new Set([
+  "bukhari","muslim","abuDaud","tirmidi",
+  "ibnMajah","riyadusSalihin","muslimHA"
+]);
+
+function setStatus(id, message, type="") {
+  const el = $(id);
+  el.textContent = message;
+  el.className = "status" + (type ? " " + type : "");
+}
+
+async function fetchJSON(url) {
+  const response = await fetch(url, {headers:{Accept:"application/json"}});
+  if (!response.ok) throw new Error("HTTP " + response.status);
+  return response.json();
+}
+
+function safeText(value, fallback="") {
+  return value === null || value === undefined ? fallback : String(value);
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[c]);
+}
+
+function goTo(id) {
+  const el = $(id);
+  if (el) el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+document.querySelectorAll("[data-go]").forEach(el => {
+  el.addEventListener("click", () => goTo(el.dataset.go));
+});
+
+function getBookmarks() {
+  try {
+    const data = JSON.parse(localStorage.getItem("noorIslamicBookmarks") || "[]");
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveBookmarks(items) {
+  try {
+    localStorage.setItem("noorIslamicBookmarks", JSON.stringify(items));
+    renderBookmarks();
+    return true;
+  } catch {
+    alert("ব্রাউজারে বুকমার্ক সংরক্ষণ করা যায়নি।");
+    return false;
+  }
+}
+
+function addBookmark(item) {
+  const items = getBookmarks();
+  if (items.some(x => x.id === item.id)) {
+    alert("এটি আগে থেকেই বুকমার্ক করা আছে।");
+    return;
+  }
+  items.unshift(item);
+  if (saveBookmarks(items)) alert("বুকমার্ক সংরক্ষণ করা হয়েছে।");
+}
+
+function removeBookmark(id) {
+  saveBookmarks(getBookmarks().filter(x => x.id !== id));
+}
+
+function renderBookmarks() {
+  const list = $("bookmarkList");
+  const items = getBookmarks();
+  if (!items.length) {
+    list.innerHTML = '<p class="muted">এখনও কোনো বুকমার্ক নেই। কুরআনের আয়াত বা হাদিসের পাশে থাকা বোতাম দিয়ে সংরক্ষণ করতে পারো।</p>';
+    return;
+  }
+  list.innerHTML = items.map(item => `
+    <div class="card">
+      <div class="meta">${escapeHTML(item.kind)} · ${escapeHTML(item.title)}</div>
+      ${item.arabic ? `<div class="arabic">${escapeHTML(item.arabic)}</div>` : ""}
+      <p>${escapeHTML(item.text || "")}</p>
+      <button class="btn" data-remove-bookmark="${escapeHTML(item.id)}">বুকমার্ক সরান</button>
+    </div>
+  `).join("");
+  list.querySelectorAll("[data-remove-bookmark]").forEach(btn => {
+    btn.addEventListener("click", () => removeBookmark(btn.dataset.removeBookmark));
+  });
+}
+
+$("clearBookmarks").addEventListener("click", () => {
+  if (confirm("সব বুকমার্ক মুছে ফেলতে চাও?")) saveBookmarks([]);
+});
+
+/* ---------------- QURAN ---------------- */
+
+async function initQuran() {
+  setStatus("quranStatus","সূরার তালিকা আনা হচ্ছে…");
+  try {
+    const json = await fetchJSON(API.quran + "/surah");
+    if (json.code !== 200 || !Array.isArray(json.data)) throw new Error("সূরার তালিকা পাওয়া যায়নি");
+    state.surahs = json.data;
+    $("surahSelect").innerHTML = state.surahs.map(s =>
+      `<option value="${s.number}">${s.number}. ${escapeHTML(s.name)} — ${escapeHTML(s.englishName)} (${s.numberOfAyahs} আয়াত)</option>`
+    ).join("");
+    setStatus("quranStatus","সূরার তালিকা প্রস্তুত। একটি সূরা নির্বাচন করো।","success");
+    await loadSurah();
+  } catch (err) {
+    setStatus("quranStatus","কুরআনের API থেকে তথ্য আনা যায়নি। ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করো।","error");
+  }
+}
+
+async function loadSurah() {
+  const number = Number($("surahSelect").value || 1);
+  if (!number) return;
+  setStatus("quranStatus","আয়াত ও বাংলা অনুবাদ আনা হচ্ছে…");
+  $("ayahList").innerHTML = "";
+  $("quranInfo").innerHTML = "";
+  $("moreAyahs").classList.add("hidden");
+  try {
+    const url = `${API.quran}/surah/${number}/editions/quran-uthmani,bn.bengali`;
+    const json = await fetchJSON(url);
+    if (json.code !== 200 || !Array.isArray(json.data) || json.data.length < 2) {
+      throw new Error("আয়াতের তথ্য পাওয়া যায়নি");
+    }
+    const arabicData = json.data.find(x => x.edition && x.edition.identifier === "quran-uthmani") || json.data[0];
+    const bengaliData = json.data.find(x => x.edition && x.edition.language === "bn") || json.data[1];
+    const translations = new Map((bengaliData.ayahs || []).map(a => [a.numberInSurah, a.text]));
+    state.ayahs = (arabicData.ayahs || []).map(a => ({
+      number: a.numberInSurah,
+      arabic: a.text,
+      translation: translations.get(a.numberInSurah) || "বাংলা অনুবাদ পাওয়া যায়নি।",
+      globalNumber: a.number
+    }));
+    state.filteredAyahs = state.ayahs;
+    state.shownAyahs = 0;
+    $("quranInfo").innerHTML = `
+      <h3>${escapeHTML(arabicData.name)} — ${escapeHTML(arabicData.englishName)}</h3>
+      <p class="muted small">${escapeHTML(arabicData.englishNameTranslation || "")} · ${arabicData.numberOfAyahs} আয়াত</p>`;
+    renderAyahs(true);
+    setStatus("quranStatus","সূরার পাঠ লোড হয়েছে। বাংলা অনুবাদ API-তে পাওয়া না গেলে সংশ্লিষ্ট আয়াতে তা জানানো হবে।","success");
+  } catch (err) {
+    setStatus("quranStatus","সূরা লোড করা যায়নি। বাংলা অনুবাদের edition বা API সাময়িকভাবে অনুপলব্ধ হতে পারে। পরে আবার চেষ্টা করো।","error");
+  }
+}
+
+function renderAyahs(reset=false) {
+  if (reset) {
+    $("ayahList").innerHTML = "";
+    state.shownAyahs = 0;
+  }
+  const start = state.shownAyahs;
+  const batch = state.filteredAyahs.slice(start, start + 30);
+  if (!batch.length && start === 0) {
+    $("ayahList").innerHTML = '<p class="muted">কোনো আয়াত পাওয়া যায়নি।</p>';
+  }
+  const html = batch.map(a => {
+    const id = "quran-" + $("surahSelect").value + "-" + a.number;
+    return `<article class="ayah">
+      <div class="meta">আয়াত ${a.number}</div>
+      <div class="arabic">${escapeHTML(a.arabic)}</div>
+      <p class="translation">${escapeHTML(a.translation)}</p>
+      <div class="ayah-actions">
+        <button class="btn" data-save-ayah="${escapeHTML(id)}">☆ বুকমার্ক</button>
+        ${a.globalNumber ? `<button class="btn" data-audio-ayah="${a.globalNumber}">▶ তিলাওয়াত</button>` : ""}
+      </div>
+    </article>`;
+  }).join("");
+  $("ayahList").insertAdjacentHTML("beforeend", html);
+  state.shownAyahs += batch.length;
+  $("moreAyahs").classList.toggle("hidden", state.shownAyahs >= state.filteredAyahs.length);
+  $("ayahList").querySelectorAll("[data-save-ayah]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const number = Number(btn.dataset.saveAyah.split("-").pop());
+      const a = state.ayahs.find(x => x.number === number);
+      if (a) addBookmark({
+        id: btn.dataset.saveAyah, kind:"কুরআন",
+        title: `সূরা ${$("surahSelect").selectedOptions[0]?.text || ""}, আয়াত ${a.number}`,
+        arabic:a.arabic,text:a.translation
+      });
+    });
+  });
+  $("ayahList").querySelectorAll("[data-audio-ayah]").forEach(btn => {
+    btn.addEventListener("click", () => playAyah(Number(btn.dataset.audioAyah), btn));
+  });
+}
+
+let currentAudio = null;
+async function playAyah(number, button) {
+  try {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+    }
+    const json = await fetchJSON(`${API.quran}/ayah/${number}/ar.alafasy`);
+    const audioURL = json?.data?.audio;
+    if (!audioURL) throw new Error("অডিও পাওয়া যায়নি");
+    currentAudio = new Audio(audioURL);
+    currentAudio.play().catch(() => alert("অডিও চালাতে ব্রাউজারের অনুমতি বা ইন্টারনেট প্রয়োজন।"));
+  } catch {
+    alert("এই আয়াতের অডিও পাওয়া যায়নি। পরে আবার চেষ্টা করো।");
+  }
+}
+
+$("loadSurah").addEventListener("click", loadSurah);
+$("moreAyahs").addEventListener("click", () => renderAyahs(false));
+$("quranSearchBtn").addEventListener("click", () => {
+  const term = $("quranSearch").value.trim().toLowerCase();
+  state.filteredAyahs = term ? state.ayahs.filter(a =>
+    (a.arabic + " " + a.translation).toLowerCase().includes(term)
+  ) : state.ayahs;
+  renderAyahs(true);
+});
+
+/* ---------------- HADITH ---------------- */
+
+function getHadithNumber(h) {
+  return h.hadithNo ?? h.hadith_number ?? h.number ?? h.id ?? "—";
+}
+function getHadithArabic(h) {
+  return h.hadithArabic ?? h.arabic ?? h.arabicText ?? "";
+}
+function getHadithBengali(h) {
+  return h.hadithBengali ?? h.bengali ?? h.bangla ?? h.textBengali ?? "";
+}
+function getHadithEnglish(h) {
+  return h.hadithEnglish ?? h.english ?? "";
+}
+
+async function loadHadithChapters() {
+  const key = $("hadithBook").value;
+  if (!AVAILABLE_HADITH_KEYS.has(key)) {
+    setStatus("hadithStatus","এই গ্রন্থের জন্য নির্বাচিত API-তে যাচাই করা সক্রিয় এন্ডপয়েন্ট নেই। এই সংস্করণে এর হাদিস দেখানো সম্ভব নয়।","error");
+    $("chapterSelect").innerHTML = '<option value="">অধ্যায় পাওয়া যায়নি</option>';
+    $("hadithList").innerHTML = "";
+    return;
+  }
+  setStatus("hadithStatus","অধ্যায়ের তালিকা আনা হচ্ছে…");
+  $("hadithList").innerHTML = "";
+  try {
+    const json = await fetchJSON(`${API.hadith}/${encodeURIComponent(key)}`);
+    const chapters = Array.isArray(json) ? json : (json.data || json.chapters || []);
+    if (!chapters.length) throw new Error("অধ্যায় পাওয়া যায়নি");
+    state.chapters = chapters;
+    $("chapterSelect").innerHTML = chapters.map((c,i) => {
+      const n = c.chSerial ?? c.id ?? (i+1);
+      const title = c.nameBengali ?? c.nameEnglish ?? c.title ?? ("অধ্যায় " + n);
+      return `<option value="${escapeHTML(n)}" data-index="${i}">${escapeHTML(title)}</option>`;
+    }).join("");
+    setStatus("hadithStatus",`${BOOK_NAMES[key]}: ${chapters.length}টি অধ্যায় পাওয়া গেছে।`,`success`);
+  } catch (err) {
+    setStatus("hadithStatus","অধ্যায় আনা যায়নি। API সাময়িকভাবে বন্ধ, পরিবর্তিত বা অনুপলব্ধ হতে পারে।","error");
+  }
+}
+
+async function loadHadith() {
+  const key = $("hadithBook").value;
+  if (!AVAILABLE_HADITH_KEYS.has(key)) {
+    setStatus("hadithStatus","এই গ্রন্থের জন্য বর্তমানে API-তে সমর্থিত ডেটা পাওয়া যাচ্ছে না।","error");
+    return;
+  }
+  const option = $("chapterSelect").selectedOptions[0];
+  if (!option) {
+    setStatus("hadithStatus","আগে অধ্যায় নির্বাচন করো।","error");
+    return;
+  }
+  const index = Number(option.dataset.index);
+  const chapter = state.chapters[index];
+  const chapterNo = chapter?.chSerial ?? chapter?.id ?? $("chapterSelect").value;
+  setStatus("hadithStatus","হাদিস আনা হচ্ছে…");
+  $("hadithList").innerHTML = "";
+  try {
+    const json = await fetchJSON(`${API.hadith}/${encodeURIComponent(key)}/${encodeURIComponent(chapterNo)}`);
+    const list = Array.isArray(json) ? json : (json.data || json.hadiths || []);
+    if (!list.length) throw new Error("হাদিস পাওয়া যায়নি");
+    state.hadiths = list;
+    state.filteredHadiths = list;
+    renderHadith();
+    setStatus("hadithStatus",`${BOOK_NAMES[key]} — ${safeText(chapter?.nameBengali, "নির্বাচিত অধ্যায়")} · ${list.length}টি রেকর্ড পাওয়া গেছে। উৎসের তথ্য ও নম্বর মিলিয়ে নাও।`,"success");
+  } catch (err) {
+    setStatus("hadithStatus","হাদিস লোড করা যায়নি। API-র অনুমতি, অধ্যায়ের নম্বর বা ইন্টারনেট সংযোগ পরীক্ষা করো।","error");
+  }
+}
+
+function renderHadith() {
+  const list = $("hadithList");
+  if (!state.filteredHadiths.length) {
+    list.innerHTML = '<p class="muted">এই অনুসন্ধানে কোনো হাদিস পাওয়া যায়নি।</p>';
+    return;
+  }
+  list.innerHTML = state.filteredHadiths.map((h,i) => {
+    const number = getHadithNumber(h);
+    const arabic = getHadithArabic(h);
+    const bangla = getHadithBengali(h);
+    const english = getHadithEnglish(h);
+    const id = `hadith-${$("hadithBook").value}-${number}-${i}`;
+    return `<article class="hadith-item">
+      <div class="meta">${escapeHTML(BOOK_NAMES[$("hadithBook").value])} · হাদিস নম্বর: ${escapeHTML(number)}</div>
+      ${arabic ? `<div class="arabic">${escapeHTML(arabic)}</div>` : ""}
+      ${bangla ? `<p class="translation">${escapeHTML(bangla)}</p>` :
+        `<p class="muted">এই রেকর্ডে বাংলা অনুবাদ পাওয়া যায়নি।</p>`}
+      ${english ? `<details><summary class="gold">ইংরেজি পাঠ</summary><p>${escapeHTML(english)}</p></details>` : ""}
+      <div class="ayah-actions"><button class="btn" data-save-hadith="${escapeHTML(id)}">☆ বুকমার্ক</button></div>
+    </article>`;
+  }).join("");
+  list.querySelectorAll("[data-save-hadith]").forEach((btn,i) => {
+    btn.addEventListener("click", () => {
+      const h = state.filteredHadiths[i];
+      addBookmark({
+        id:btn.dataset.saveHadith,kind:"হাদিস",
+        title:`${BOOK_NAMES[$("hadithBook").value]} · ${getHadithNumber(h)}`,
+        arabic:getHadithArabic(h),
+        text:getHadithBengali(h) || getHadithEnglish(h) || "অনুবাদ পাওয়া যায়নি"
+      });
+    });
+  });
+}
+
+$("loadHadithChapters").addEventListener("click", loadHadithChapters);
+$("loadHadith").addEventListener("click", loadHadith);
+$("hadithBook").addEventListener("change", () => {
+  $("chapterSelect").innerHTML = '<option value="">অধ্যায় আনুন</option>';
+  $("hadithList").innerHTML = "";
+});
+$("hadithSearchBtn").addEventListener("click", () => {
+  const term = $("hadithSearch").value.trim().toLowerCase();
+  state.filteredHadiths = term ? state.hadiths.filter(h =>
+    [getHadithNumber(h),getHadithArabic(h),getHadithBengali(h),getHadithEnglish(h)]
+      .join(" ").toLowerCase().includes(term)
+  ) : state.hadiths;
+  renderHadith();
+});
+
+/* ---------------- PRAYER TIMES ---------------- */
+
+async function loadPrayerTimes() {
+  const city = $("city").value.trim() || "Dhaka";
+  setStatus("prayerStatus","নামাজের সময় আনা হচ্ছে…");
+  try {
+    const date = new Date();
+    const dateString = [
+      String(date.getDate()).padStart(2,"0"),
+      String(date.getMonth()+1).padStart(2,"0"),
+      date.getFullYear()
+    ].join("-");
+    const url = `${API.prayer}/timingsByCity/${dateString}?city=${encodeURIComponent(city)}&country=Bangladesh&method=1`;
+    const json = await fetchJSON(url);
+    if (json.code !== 200 || !json.data?.timings) throw new Error("সময়সূচি পাওয়া যায়নি");
+    renderPrayerTimes(json.data, city);
+    setStatus("prayerStatus","নামাজের সময় লোড হয়েছে। স্থানীয় মসজিদের সময়ের সঙ্গে মিলিয়ে নিন।","success");
+  } catch {
+    setStatus("prayerStatus","নামাজের সময় পাওয়া যায়নি। শহরের নাম ইংরেজিতে লিখে আবার চেষ্টা করো।","error");
+  }
+}
+
+function renderPrayerTimes(data, city) {
+  const timings = data.timings;
+  const names = [
+    ["Fajr","ফজর"],["Sunrise","সূর্যোদয়"],["Dhuhr","যোহর"],
+    ["Asr","আসর"],["Maghrib","মাগরিব"],["Isha","এশা"]
+  ];
+  $("prayerDate").textContent = `${city} · ${data.date?.readable || ""} · ${data.meta?.timezone || ""}`;
+  $("prayerGrid").innerHTML = names.map(([key,bn]) => `
+    <div class="prayer-time"><span>${bn}</span><strong>${escapeHTML((timings[key] || "—").split(" ")[0])}</strong></div>
+  `).join("");
+}
+
+async function loadPrayerByCoordinates(lat, lon) {
+  setStatus("prayerStatus","অবস্থান অনুযায়ী নামাজের সময় আনা হচ্ছে…");
+  try {
+    const date = new Date();
+    const dateString = [
+      String(date.getDate()).padStart(2,"0"),
+      String(date.getMonth()+1).padStart(2,"0"),
+      date.getFullYear()
+    ].join("-");
+    const url = `${API.prayer}/timings/${dateString}?latitude=${lat}&longitude=${lon}&method=1`;
+    const json = await fetchJSON(url);
+    if (json.code !== 200 || !json.data?.timings) throw new Error();
+    renderPrayerTimes(json.data, "তোমার অবস্থান");
+    setStatus("prayerStatus","অবস্থান অনুযায়ী সময় পাওয়া গেছে। স্থানীয় সময়সূচির সঙ্গে মিলিয়ে নাও।","success");
+  } catch {
+    setStatus("prayerStatus","অবস্থান অনুযায়ী সময় আনা যায়নি। শহর দিয়ে চেষ্টা করো।","error");
+  }
+}
+
+$("loadPrayer").addEventListener("click", loadPrayerTimes);
+$("useLocation").addEventListener("click", () => {
+  if (!navigator.geolocation) {
+    setStatus("prayerStatus","এই ব্রাউজারে অবস্থান নির্ণয় সমর্থিত নয়।","error");
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    pos => loadPrayerByCoordinates(pos.coords.latitude,pos.coords.longitude),
+    () => setStatus("prayerStatus","অবস্থানের অনুমতি পাওয়া যায়নি। শহরের নাম ব্যবহার করো।","error"),
+    {enableHighAccuracy:true,timeout:12000}
+  );
+});
+
+/* ---------------- QIBLA ---------------- */
+
+function calculateQibla(lat, lon) {
+  const kaabaLat = 21.4225 * Math.PI / 180;
+  const kaabaLon = 39.8262 * Math.PI / 180;
+  const userLat = lat * Math.PI / 180;
+  const deltaLon = kaabaLon - lon * Math.PI / 180;
+  const y = Math.sin(deltaLon);
+  const x = Math.cos(userLat) * Math.tan(kaabaLat) -
+            Math.sin(userLat) * Math.cos(deltaLon);
+  return (Math.atan2(y,x) * 180 / Math.PI + 360) % 360;
+}
+
+function getLocationForQibla() {
+  return new Promise((resolve,reject) => {
+    if (!navigator.geolocation) return reject(new Error("অবস্থান সমর্থিত নয়"));
+    navigator.geolocation.getCurrentPosition(
+      p => resolve({lat:p.coords.latitude,lon:p.coords.longitude}),
+      e => reject(e),
+      {enableHighAccuracy:true,timeout:15000}
+    );
+  });
+}
+
+async function findQibla() {
+  $("qiblaStatus").textContent = "অবস্থান নির্ণয় করা হচ্ছে…";
+  try {
+    const pos = await getLocationForQibla();
+    state.userLat = pos.lat;
+    state.userLon = pos.lon;
+    state.qiblaBearing = calculateQibla(pos.lat,pos.lon);
+    $("qiblaDegrees").textContent = `উত্তর থেকে ঘড়ির কাঁটার দিকে ${state.qiblaBearing.toFixed(1)}°`;
+    $("qiblaStatus").textContent = "এটি উত্তর দিক থেকে হিসাব করা ভৌগোলিক কিবলা বিয়ারিং। কম্পাস সেন্সর চালু না থাকলে তীরটি সরাসরি বাস্তব দিক নির্দেশ করে না।";
+    updateNeedle();
+    loadPrayerByCoordinates(pos.lat,pos.lon);
+  } catch {
+    $("qiblaStatus").textContent = "অবস্থান পাওয়া যায়নি। ব্রাউজারের Location অনুমতি চালু করে HTTPS ওয়েবসাইটে আবার চেষ্টা করো।";
+  }
+}
+
+function updateNeedle() {
+  if (state.qiblaBearing === null) return;
+  const heading = state.heading;
+  const rotation = heading === null ? state.qiblaBearing : state.qiblaBearing - heading;
+  $("needle").style.transform = `rotate(${rotation}deg)`;
+}
+
+$("findQibla").addEventListener("click", findQibla);
+
+async function enableCompass() {
+  try {
+    if (typeof DeviceOrientationEvent === "undefined") {
+      throw new Error("কম্পাস সেন্সর সমর্থিত নয়");
+    }
+    if (typeof DeviceOrientationEvent.requestPermission === "function") {
+      const permission = await DeviceOrientationEvent.requestPermission();
+      if (permission !== "granted") throw new Error("সেন্সরের অনুমতি পাওয়া যায়নি");
+    }
+    window.addEventListener("deviceorientation", event => {
+      if (typeof event.webkitCompassHeading === "number") {
+        state.heading = event.webkitCompassHeading;
+      } else if (event.alpha !== null && event.alpha !== undefined) {
+        state.heading = 360 - event.alpha;
+      }
+      updateNeedle();
+    }, true);
+    $("qiblaStatus").textContent = "কম্পাস সেন্সর সক্রিয় করার চেষ্টা করা হয়েছে। ফোনটি সমতল রাখো এবং দিকের নির্ভুলতা আলাদা করে যাচাই করো।";
+  } catch (e) {
+    $("qiblaStatus").textContent = "কম্পাস চালু হয়নি। তোমার ডিভাইস, ব্রাউজার বা সেন্সর অনুমতি এটি সমর্থন নাও করতে পারে।";
+  }
+}
+$("enableCompass").addEventListener("click", enableCompass);
+
+/* ---------------- SEARCH ---------------- */
+
+function doGlobalSearch() {
+  const term = $("globalSearch").value.trim().toLowerCase();
+  if (!term) {
+    alert("সার্চ করার জন্য কোনো শব্দ লিখো।");
+    return;
+  }
+  const results = [];
+  state.ayahs.forEach(a => {
+    if ((a.arabic + " " + a.translation).toLowerCase().includes(term)) {
+      results.push({
+        kind:"কুরআন",
+        title:`সূরা ${$("surahSelect").selectedOptions[0]?.text || ""} · আয়াত ${a.number}`,
+        text:a.translation,
+        arabic:a.arabic
+      });
+    }
+  });
+  state.hadiths.forEach(h => {
+    if ([getHadithNumber(h),getHadithArabic(h),getHadithBengali(h),getHadithEnglish(h)]
+      .join(" ").toLowerCase().includes(term)) {
+      results.push({
+        kind:"হাদিস",
+        title:`${BOOK_NAMES[$("hadithBook").value]} · ${getHadithNumber(h)}`,
+        text:getHadithBengali(h) || getHadithEnglish(h),
+        arabic:getHadithArabic(h)
+      });
+    }
+  });
+  $("searchResults").classList.remove("hidden");
+  $("searchResultsList").innerHTML = results.length ? results.map(r => `
+    <article class="hadith-item">
+      <div class="meta">${escapeHTML(r.kind)}</div>
+      <h3>${escapeHTML(r.title)}</h3>
+      ${r.arabic ? `<div class="arabic">${escapeHTML(r.arabic)}</div>` : ""}
+      <p>${escapeHTML(r.text || "অনুবাদ পাওয়া যায়নি")}</p>
+    </article>
+  `).join("") : `<p>বর্তমানে লোড করা সূরা ও অধ্যায়ের মধ্যে “${escapeHTML(term)}” পাওয়া যায়নি। অন্য সূরা/অধ্যায় লোড করে আবার চেষ্টা করো।</p>`;
+  goTo("searchResults");
+}
+$("searchBtn").addEventListener("click", doGlobalSearch);
+$("globalSearch").addEventListener("keydown", e => {
+  if (e.key === "Enter") doGlobalSearch();
+});
+
+/* ---------------- STARTUP ---------------- */
+
+renderBookmarks();
+initQuran();
+loadPrayerTimes();
+</script>
+</body>
+</html>
