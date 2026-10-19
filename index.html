@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আল-হাদিস লাইব্রেরি - ব্ল্যাক ও গোল্ড এডিশন</title>
+    <title>আল-হাদিস লাইব্রেরি - সুন্নাহ ও মাসআলা পোর্টাল</title>
     <style>
         :root {
             --bg-color: #09090b;
@@ -14,183 +14,92 @@
             --text-muted: #a1a1aa;
             --border-color: #2a261d;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding-bottom: 80px; /* বটম বারের জন্য জায়গা */
-        }
-        header {
-            text-align: center;
-            padding: 20px 15px;
-            border-bottom: 1px solid var(--border-color);
-            background: linear-gradient(to bottom, #111, var(--bg-color));
-        }
-        h1 {
-            color: var(--gold-primary);
-            margin: 0 0 15px 0;
-            font-size: 24px;
-            letter-spacing: 1px;
-        }
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        .search-box {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 30px;
-            border: 1px solid var(--gold-primary);
-            background: var(--card-bg);
-            color: var(--text-main);
-            font-size: 15px;
-            outline: none;
-            box-sizing: border-box;
-        }
-        .search-box::placeholder {
-            color: var(--text-muted);
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-        .section-title {
-            color: var(--gold-light);
-            font-size: 18px;
-            margin-bottom: 15px;
-            border-left: 3px solid var(--gold-primary);
-            padding-left: 10px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-        .card {
-            background: var(--card-bg);
-            padding: 18px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .card:active {
-            border-color: var(--gold-primary);
-            transform: scale(0.98);
-        }
-        .card-info h3 {
-            margin: 0 0 5px 0;
-            color: var(--gold-light);
-            font-size: 17px;
-        }
-        .card-info p {
-            margin: 0;
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-        .badge {
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--gold-primary);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        /* বটম নেভিগেশন বার */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #111113;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            z-index: 1000;
-        }
-        .nav-item {
-            text-align: center;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 11px;
-        }
-        .nav-item.active, .nav-item:hover {
-            color: var(--gold-primary);
-        }
-        .nav-item div {
-            font-size: 20px;
-            margin-bottom: 2px;
-        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding-bottom: 80px; }
+        header { text-align: center; padding: 20px 15px; border-bottom: 1px solid var(--border-color); background: linear-gradient(to bottom, #111, var(--bg-color)); position: sticky; top: 0; z-index: 100; }
+        h1 { color: var(--gold-primary); margin: 0 0 12px 0; font-size: 22px; cursor: pointer; }
+        .search-container { max-width: 600px; margin: 0 auto; }
+        .search-box { width: 100%; padding: 12px 18px; border-radius: 30px; border: 1px solid var(--gold-primary); background: var(--card-bg); color: var(--text-main); font-size: 14px; outline: none; box-sizing: border-box; }
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        .section-title { color: var(--gold-light); font-size: 17px; margin-bottom: 15px; border-left: 3px solid var(--gold-primary); padding-left: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .back-btn { background: var(--gold-primary); color: #000; border: none; padding: 5px 12px; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; display: none; }
+        .card { background: var(--card-bg); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px; cursor: pointer; transition: 0.2s; }
+        .card:active { border-color: var(--gold-primary); transform: scale(0.99); }
+        .card h3 { margin: 0 0 6px 0; color: var(--gold-light); font-size: 16px; }
+        .card p { margin: 0; color: var(--text-muted); font-size: 13px; }
+        .badge { background: rgba(212, 175, 55, 0.15); color: var(--gold-primary); padding: 5px 10px; border-radius: 20px; font-size: 12px; float: right; border: 1px solid rgba(212, 175, 55, 0.3); }
+        .badge-sahih { background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 4px 8px; border-radius: 8px; font-size: 11px; border: 1px solid #10b981; display: inline-block; margin-bottom: 8px; }
+        .hadith-text { font-size: 15px; line-height: 1.6; color: var(--text-main); margin: 10px 0; }
+        .hadith-meta { font-size: 12px; color: var(--text-muted); border-top: 1px dashed var(--border-color); padding-top: 8px; margin-top: 8px; }
+        .masala-box { background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--gold-primary); padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 13px; color: var(--gold-light); }
+        .page-view { display: none; }
+        .page-view.active { display: block; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #111113; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 8px 0; z-index: 1000; }
+        .nav-item { text-align: center; color: var(--text-muted); text-decoration: none; font-size: 11px; cursor: pointer; flex: 1; }
+        .nav-item.active { color: var(--gold-primary); }
+        .nav-item div { font-size: 18px; margin-bottom: 2px; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>আল-হাদিস লাইব্রেরি</h1>
+        <h1 onclick="showHome()">আল-হাদিস লাইব্রেরি</h1>
         <div class="search-container">
-            <input type="text" class="search-box" placeholder="কিতাব বা হাদিস নম্বর লিখে খুঁজুন...">
+            <input type="text" id="searchInput" class="search-box" placeholder="কিতাব বা হাদিস নম্বর লিখে খুঁজুন...">
         </div>
     </header>
 
     <div class="container">
-        <div class="section-title">প্রধান কিতাবসমূহ</div>
-        <div class="grid">
-            <div class="card">
-                <div class="card-info">
-                    <h3>সহীহ বুখারী</h3>
-                    <p>ইমাম বুখারী (রহ.)</p>
-                </div>
-                <div class="badge">৭৫৬৩ হাদিস</div>
+        
+        <!-- ১. হোম পেজ (কিতাব তালিকা) -->
+        <div id="homeView" class="page-view active">
+            <div class="section-title">প্রধান কিতাবসমূহ</div>
+            <div class="card" onclick="openBook('bukhari', 'সহীহ বুখারী')">
+                <span class="badge">৭৫৬৩ হাদিস</span>
+                <h3>সহীহ বুখারী</h3>
+                <p>ইমাম বুখারী (রহ.)</p>
             </div>
-            <div class="card">
-                <div class="card-info">
-                    <h3>সহীহ মুসলিম</h3>
-                    <p>ইমাম মুসলিম (রহ.)</p>
-                </div>
-                <div class="badge">৭৫৪৭ হাদিস</div>
+            <div class="card" onclick="openBook('muslim', 'সহীহ মুসলিম')">
+                <span class="badge">৭৫৪৭ হাদিস</span>
+                <h3>সহীহ মুসলিম</h3>
+                <p>ইমাম মুসলিম (রহ.)</p>
             </div>
-            <div class="card">
-                <div class="card-info">
-                    <h3>সুনানে আন-নাসায়ী</h3>
-                    <p>ইমাম নাসায়ী (রহ.)</p>
-                </div>
-                <div class="badge">৫৭৫৮ হাদিস</div>
+            <div class="card" onclick="openBook('nasai', 'সুনানে আন-নাসায়ী')">
+                <span class="badge">৫৭৫৮ হাদিস</span>
+                <h3>সুনানে আন-নাসায়ী</h3>
+                <p>ইমাম নাসায়ী (রহ.)</p>
             </div>
-            <div class="card">
-                <div class="card-info">
-                    <h3>সুনানে আবু দাউদ</h3>
-                    <p>ইমাম আবু দাউদ (রহ.)</p>
-                </div>
-                <div class="badge">৫২৭৪ হাদিস</div>
+            <div class="card" onclick="openBook('abudawud', 'সুনানে আবু দাউদ')">
+                <span class="badge">৫২৭৪ হাদিস</span>
+                <h3>সুনানে আবু দাউদ</h3>
+                <p>ইমাম আবু দাউদ (রহ.)</p>
             </div>
         </div>
-    </div>
 
-    <!-- বটম নেভিগেশন বার -->
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item active">
-            <div>📖</div>হাদিস
-        </a>
-        <a href="#" class="nav-item">
-            <div>🕋</div>কুরআন
-        </a>
-        <a href="#" class="nav-item">
-            <div>🧭</div>ক্বিবলা
-        </a>
-        <a href="#" class="nav-item">
-            <div>⭐</div>সেভড
-        </a>
-        <a href="#" class="nav-item">
-            <div>⏰</div>নামাজ
-        </a>
-    </nav>
+        <!-- ২. অধ্যায় ও হাদিস দেখার পেজ -->
+        <div id="hadithView" class="page-view">
+            <div class="section-title">
+                <span id="bookTitle">কিতাবের নাম</span>
+                <button class="back-btn" id="backBtn" onclick="showHome()" style="display:inline-block;">← পেছনে যান</button>
+            </div>
+            <div id="hadithList"></div>
+        </div>
 
-</body>
-</html>
+        <!-- ৩. কুরআন পেজ -->
+        <div id="quranView" class="page-view">
+            <div class="section-title">আল-কুরআন (বাংলা অনুবাদ)</div>
+            <div class="card">
+                <h3>১. সূরা আল-ফাতিহা</h3>
+                <p>আয়াত: ৭ | মাক্কী</p>
+            </div>
+            <div class="card">
+                <h3>২. সূরা আল-বাকারা</h3>
+                <p>আয়াত: ২৮৬ | মাদানী</p>
+            </div>
+        </div>
+
+        <!-- ৪. ক্বিবলা কম্পাস পেজ -->
+        <div id="qiblaView" class="page-view">
+            <div class="section-title">ক্বিবলা কম্পাস</div>
+            <div class="card" style="text-align: center; padding: 40px 20px;">
+                <div style="font-size: 60px;">🧭</div>
+                <h3 style="margin-top: 15px;">ক্বিবলার দিক: ২৯৩° (উত্তর-পশ্চিম)</h3>
